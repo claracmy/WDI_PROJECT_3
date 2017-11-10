@@ -51,7 +51,7 @@
     }
   },
   "dependencies": {
-    "bcrypt": "^1.0.2",
+    "bcrypt": "^1.0.3",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.1",
     "chai": "^4.1.2",
@@ -59,12 +59,13 @@
     "express": "^4.15.2",
     "fs": "^0.0.1-security",
     "istanbul": "^0.4.5",
+    "jsonwebtoken": "^8.1.0",
     "mocha": "^4.0.1",
     "mongoose": "^4.8.6",
     "morgan": "^1.8.1",
     "request-promise": "^4.2.2",
     "supertest": "^3.0.0",
-    "validator": "^5.6.0",
+    "validator": "^9.1.1",
     "watson-developer-cloud": "^2.42.0"
   },
   "devDependencies": {
