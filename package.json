@@ -57,12 +57,15 @@
     "chai": "^4.1.2",
     "cors": "^2.8.4",
     "express": "^4.15.2",
+    "fs": "^0.0.1-security",
     "istanbul": "^0.4.5",
     "mocha": "^4.0.1",
     "mongoose": "^4.8.6",
     "morgan": "^1.8.1",
+    "request-promise": "^4.2.2",
     "supertest": "^3.0.0",
-    "validator": "^5.6.0"
+    "validator": "^5.6.0",
+    "watson-developer-cloud": "^2.42.0"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
