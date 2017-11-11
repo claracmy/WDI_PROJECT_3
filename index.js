@@ -9,8 +9,8 @@ const errorHandler    = require('./lib/errorHandler');
 const app             = express();
 const environment      = app.get('env');
 
-const TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
-const fs = require('fs');
+// const TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
+// const fs = require('fs');
 
 const mongoose        = require('mongoose');
 mongoose.Promise      = require('bluebird');
