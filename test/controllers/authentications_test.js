@@ -17,6 +17,7 @@ describe('Authentications', function() {
         .post('/api/register')
         .set('Accept','application/json')
         .send({
+
           username: 'Billy',
           email: 'a@a.com',
           password: 'password',

@@ -4,12 +4,43 @@
     <meta charset="utf-8">
     <title>Whats-On</title>
     <base href="/">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <!-- inject:js -->
     <!-- endinject -->
     <!-- inject:css -->
     <!-- endinject -->
   </head>
-  <body>
+  <body ng-controller="mainCtrl as main">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" ui-sref="home">Whats-On</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li ng-if="main.user" class="nav-item">
+            <a class="nav-link" ui-sref="usersIndex">Users</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item" ng-if="!main.user">
+            <a class="nav-link" ui-sref="register">Register</a>
+          </li>
+          <li class="nav-item" ng-if="!main.user">
+            <a class="nav-link" ui-sref="login">Login</a>
+          </li>
+          <li class="nav-item" ng-if="main.user">
+            <a class="nav-link" href="#">Hello {{ main.user.username }}</a>
+          </li>
+          <li class="nav-item" ng-if="main.user">
+            <a class="nav-link" href="#" ng-click="main.logout()">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
     <main ui-view></main>
   </body>
 </html>
