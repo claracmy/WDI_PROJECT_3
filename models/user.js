@@ -16,13 +16,13 @@ userSchema
   .virtual('passwordConfirmation')
   .set(setPasswordConfirmation);
 
-// userSchema
-//   .path('passwordHash')
-//   .validate(validatePasswordHash);
+userSchema
+  .path('passwordHash')
+  .validate(validatePasswordHash);
 
-// userSchema
-//   .path('email')
-//   .validate(validateEmail);
+userSchema
+  .path('email')
+  .validate(validateEmail);
 
 userSchema.methods.validatePassword = validatePassword;
 
