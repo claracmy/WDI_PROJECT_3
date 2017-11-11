@@ -17,12 +17,19 @@ describe('Authentications', function() {
         .post('/api/register')
         .set('Accept','application/json')
         .send({
+<<<<<<< HEAD
             username: 'Billy',
             email: 'a@a.com',
             passwordHash: 'password'
+=======
+          username: 'Billy',
+          email: 'a@a.com',
+          password: 'password',
+          passwordConfirmation: 'password'
+>>>>>>> 5e9a9c4a0e21ad78c1e75ead6e85337432a982e8
         })
         .end((err, res) => {
-          expect(res.status).to.eq(200);
+          expect(res.status).to.eq(201);
           expect(res.body).to.be.a('object');
           expect(res.body.message).to.eq('Welcome Billy!');
           expect(res.body.token).to.be.a('string');
@@ -34,8 +41,14 @@ describe('Authentications', function() {
         .post('/api/register')
         .set('Accept','application/json')
         .send({
+<<<<<<< HEAD
             username: 'Billy',
             passwordHash: 'password'
+=======
+          username: 'billy',
+          password: 'password',
+          passwordConfirmation: 'password'
+>>>>>>> 5e9a9c4a0e21ad78c1e75ead6e85337432a982e8
         })
         .end((err, res) => {
           expect(res.status).to.eq(400);
@@ -46,10 +59,42 @@ describe('Authentications', function() {
           done();
         });
     });
-    it('should not register a user with no password', () => {
-    });
-    it('should not register a user with no password confirmation', () => {
+    it('should not register a user with no password', function(done) {
+      api
+        .post('/api/register')
+        .set('Accept','application/json')
+        .send({
+          username: 'billy',
+          email: 'a@a.com',
+          passwordConfirmation: 'password'
+        })
+        .end((err, res) => {
+          expect(res.status).to.eq(400);
+          expect(res.body).to.be.a('object');
+          expect(res.body.errors).to.eq('ValidationError: passwordHash: Path `passwordHash` is required.');
+          expect(res.body.message).to.eq('Bad Request');
+
+          done();
+        });
     });
 
+    it('should not register a user with no password Confirmation', function(done) {
+      api
+        .post('/api/register')
+        .set('Accept','application/json')
+        .send({
+          username: 'billy',
+          email: 'a@a.com',
+          password: 'password'
+        })
+        .end((err, res) => {
+          expect(res.status).to.eq(400);
+          expect(res.body).to.be.a('object');
+          expect(res.body.errors).to.eq('ValidationError: passwordConfirmation: Passwords do not match.');
+          expect(res.body.message).to.eq('Bad Request');
+
+          done();
+        });
+    });
   });
 });
