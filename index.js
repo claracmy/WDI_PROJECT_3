@@ -22,7 +22,8 @@ mongoose.connect(db[environment], { useMongoClient: true });
 // function useWatson(req, res) {
 //   console.log('watson running');
 //   var text_to_speech = new TextToSpeechV1 ({
-
+//     username: 'USERNAME_HERE',
+//     password: 'PASSWORD_HERE'
 //   });
 //
 //   var params = {

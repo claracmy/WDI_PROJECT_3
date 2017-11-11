@@ -1,4 +1,4 @@
-const file = require('../models/file');
+const File = require('../models/file');
 
 function filesIndex (req, res){
   File
@@ -9,11 +9,18 @@ function filesIndex (req, res){
 
 }
 
+function filesNew (req, res){
+  File
+    .create(req.body)
+    .then((file) => res.status(201).json(file))
+    .catch(() => res.status(500).json({ message: 'something is wrong'}));
+}
+
 function filesShow (req, res){
   File
     .findById(req.params.id)
     .exec()
-    .then(() => {
+    .then(file => {
       if (!file) return res.status(200).json({ message: 'file not found'});
       return res.status(200).json(file);
     })
@@ -24,7 +31,7 @@ function filesUpdate(req, res){
   File
     .findByIdAndUpdate(req.params.id)
     .exec()
-    .then(() => {
+    .then(file => {
       if (!file) return res.status(404).json({ message: 'file not found '});
       return res.status(200).json( { file } );
     })
@@ -35,7 +42,7 @@ function filesDelete(req, res){
   File
     .findByIdAndRemove(req.params.id)
     .exec()
-    .then(() => {
+    .then(file => {
       if (!file) return res.status(404).json({ message: 'file not found'});
       return res.sendStatus(204);
     })
@@ -44,6 +51,7 @@ function filesDelete(req, res){
 
 module.exports = {
   index: filesIndex,
+  new: filesNew,
   show: filesShow,
   update: filesUpdate,
   delete: filesDelete
