@@ -17,16 +17,11 @@ describe('Authentications', function() {
         .post('/api/register')
         .set('Accept','application/json')
         .send({
-<<<<<<< HEAD
-            username: 'Billy',
-            email: 'a@a.com',
-            passwordHash: 'password'
-=======
+
           username: 'Billy',
           email: 'a@a.com',
           password: 'password',
           passwordConfirmation: 'password'
->>>>>>> 5e9a9c4a0e21ad78c1e75ead6e85337432a982e8
         })
         .end((err, res) => {
           expect(res.status).to.eq(201);
@@ -41,14 +36,9 @@ describe('Authentications', function() {
         .post('/api/register')
         .set('Accept','application/json')
         .send({
-<<<<<<< HEAD
-            username: 'Billy',
-            passwordHash: 'password'
-=======
           username: 'billy',
           password: 'password',
           passwordConfirmation: 'password'
->>>>>>> 5e9a9c4a0e21ad78c1e75ead6e85337432a982e8
         })
         .end((err, res) => {
           expect(res.status).to.eq(400);
