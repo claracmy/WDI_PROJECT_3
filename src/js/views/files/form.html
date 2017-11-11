@@ -1,0 +1,12 @@
+<h1>{{ vm.title }}</h1>
+
+
+<form ng-submit="vm.submit(vm.file)">
+  <label for="name">Name</label>
+  <input id="name" type="text" ng-model="vm.file.name">
+
+  <label for="text">Text</label>
+  <textarea id="text" ng-model="vm.file.text">What do you want Watson to read?</textarea>
+
+  <button type="submit">Submit</button>
+</form>
