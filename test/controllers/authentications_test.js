@@ -19,7 +19,8 @@ describe('Authentications', function() {
         .send({
           username: 'Billy',
           email: 'a@a.com',
-          passwordHash: 'password'
+          password: 'password',
+          passwordConfirmation: 'password'
         })
         .end((err, res) => {
           expect(res.status).to.eq(201);
@@ -35,7 +36,8 @@ describe('Authentications', function() {
         .set('Accept','application/json')
         .send({
           username: 'billy',
-          passwordHash: 'password'
+          password: 'password',
+          passwordConfirmation: 'password'
         })
         .end((err, res) => {
           expect(res.status).to.eq(400);
@@ -46,10 +48,42 @@ describe('Authentications', function() {
           done();
         });
     });
-    it('should not register a user with no password', () => {
-    });
-    it('should not register a user with no password confirmation', () => {
+    it('should not register a user with no password', function(done) {
+      api
+        .post('/api/register')
+        .set('Accept','application/json')
+        .send({
+          username: 'billy',
+          email: 'a@a.com',
+          passwordConfirmation: 'password'
+        })
+        .end((err, res) => {
+          expect(res.status).to.eq(400);
+          expect(res.body).to.be.a('object');
+          expect(res.body.errors).to.eq('ValidationError: passwordHash: Path `passwordHash` is required.');
+          expect(res.body.message).to.eq('Bad Request');
+
+          done();
+        });
     });
 
+    it('should not register a user with no password Confirmation', function(done) {
+      api
+        .post('/api/register')
+        .set('Accept','application/json')
+        .send({
+          username: 'billy',
+          email: 'a@a.com',
+          password: 'password'
+        })
+        .end((err, res) => {
+          expect(res.status).to.eq(400);
+          expect(res.body).to.be.a('object');
+          expect(res.body.errors).to.eq('ValidationError: passwordConfirmation: Passwords do not match.');
+          expect(res.body.message).to.eq('Bad Request');
+
+          done();
+        });
+    });
   });
 });
