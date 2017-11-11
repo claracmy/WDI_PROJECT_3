@@ -17,16 +17,14 @@ describe('Authentications', function() {
         .post('/api/register')
         .set('Accept','application/json')
         .send({
-          user: {
-            username: 'billy',
-            email: 'a@a.com',
-            passwordHash: 'password'
-          }
+          username: 'Billy',
+          email: 'a@a.com',
+          passwordHash: 'password'
         })
         .end((err, res) => {
-          expect(res.status).to.eq(200);
+          expect(res.status).to.eq(201);
           expect(res.body).to.be.a('object');
-          expect(res.body.message).to.eq('Thanks for registering.');
+          expect(res.body.message).to.eq('Welcome Billy!');
           expect(res.body.token).to.be.a('string');
           done();
         });
@@ -36,15 +34,13 @@ describe('Authentications', function() {
         .post('/api/register')
         .set('Accept','application/json')
         .send({
-          user: {
-            username: 'billy',
-            passwordHash: 'password'
-          }
+          username: 'billy',
+          passwordHash: 'password'
         })
         .end((err, res) => {
           expect(res.status).to.eq(400);
           expect(res.body).to.be.a('object');
-          expect(res.body.errors).to.eq('Validation Error: email: Path email is required');
+          expect(res.body.errors).to.eq('ValidationError: email: Path `email` is required.');
           expect(res.body.message).to.eq('Bad Request');
 
           done();
