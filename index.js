@@ -22,8 +22,8 @@ mongoose.connect(db[environment], { useMongoClient: true });
 // function useWatson(req, res) {
 //   console.log('watson running');
 //   var text_to_speech = new TextToSpeechV1 ({
-//     username: 'd643b333-42a6-4c0c-a04d-65d946d7b203',
-//     password: 'nQfY6cXErZ8v'
+//     username: 'USERNAME_HERE',
+//     password: 'PASSWORD_HERE'
 //   });
 //
 //   var params = {
