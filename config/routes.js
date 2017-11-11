@@ -3,6 +3,7 @@ const router  = express.Router();
 
 const authentications = require('../controllers/authentications');
 const users           = require('../controllers/users');
+const files           = require('../controllers/files');
 
 router.route('/register')
   .post(authentications.register);
@@ -14,6 +15,15 @@ router.route('/users')
 router.route('/users/:id')
   .get(users.show)
   .put(users.update)
-  .delete(users.delete); 
+  .delete(users.delete);
+
+router.route('/files')
+  .get(files.index)
+  .post(files.new);
+router.route('/files/:id')
+  .get(files.show)
+  .put(files.update)
+  .delete(files.delete);
+
 
 module.exports = router;
