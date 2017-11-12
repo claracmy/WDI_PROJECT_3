@@ -9,6 +9,13 @@ function filesIndex (req, res){
 
 }
 
+function filesCreate(req, res){
+  File
+    .create(req.body.file)
+    .then(file => res.status(201).json(file))
+    .catch(err => res.status(500).json(err));
+}
+
 function filesShow (req, res){
   File
     .findById(req.params.id)
@@ -44,6 +51,7 @@ function filesDelete(req, res){
 
 module.exports = {
   index: filesIndex,
+  create: filesCreate,
   show: filesShow,
   update: filesUpdate,
   delete: filesDelete
