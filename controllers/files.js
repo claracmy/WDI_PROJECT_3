@@ -1,4 +1,5 @@
 const File = require('../models/file');
+let watsonText;
 
 function filesIndex (req, res){
   File
@@ -9,11 +10,17 @@ function filesIndex (req, res){
 
 }
 
-function filesNew (req, res){
+function filesNew (req, res, next){
+  req.body.createdBy = req.user;
+  watsonText = req.body.text;
+
   File
     .create(req.body)
-    .then((file) => res.status(201).json(file))
-    .catch(() => res.status(500).json({ message: 'something is wrong'}));
+    .then((file) => {
+      watsonFunction();
+      res.status(201).json(file);
+    })
+    .catch(next);
 }
 
 function filesShow (req, res){
@@ -47,6 +54,33 @@ function filesDelete(req, res){
       return res.sendStatus(204);
     })
     .catch(() => res.status(500).json({ message: 'something went wrong' }));
+}
+
+const TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
+const fs = require('fs');
+
+function watsonFunction(req, res) {
+
+  const textToSpeech = new TextToSpeechV1({
+    username: 'd643b333-42a6-4c0c-a04d-65d946d7b203',
+    password: 'nQfY6cXErZ8v'
+  });
+
+  const params = {
+    text: `${watsonText}`,
+    voice: 'en-US_AllisonVoice', // Optional voice
+    accept: 'audio/wav'
+  };
+
+  textToSpeech
+    .synthesize(params, function(err, audio) {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      textToSpeech.repairWavHeader(audio);
+      fs.writeFileSync('billy.wav', audio);
+    });
 }
 
 module.exports = {
