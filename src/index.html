@@ -41,6 +41,41 @@
       </div>
     </nav>
 
+    <div class="fileUpload" ng-controller="mainController">
+      <br>
+
+      <div ng-show="uploading" class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+        </div>
+      </div>
+
+      <br>
+
+      <form ng-submit="Submit();">
+        <label class="btn btn-success">
+          Browse
+        <input type="file" file-model="file.upload" name="myfile" ng-disabled="uploading" style="display: none;">
+        </label>
+        <br>
+        <br>
+        <button type="button" name="button" class="btn btn-primary" ng-disabled="uploading">Upload</button>
+      </form>
+
+      <br>
+
+      <img ng-src="{{ thumbnail.dataUrl || 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Default_profile_picture_%28male%29_on_Facebook.jpg/600px-Default_profile_picture_%28male%29_on_Facebook.jpg'}}">
+
+      <br>
+      <br>
+
+      <div ng-show="message">
+        <div ng-class="alert">
+          {{ message }}
+        </div>
+      </div>
+    </div>
+
+    <br>
     <main ui-view></main>
   </body>
 </html>
