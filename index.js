@@ -5,10 +5,10 @@ const router          = require('./config/routes');
 const { db, port }    = require('./config/environment');
 const customResponses = require('./lib/customResponses');
 const errorHandler    = require('./lib/errorHandler');
-const cors                 = require('cors');
+const cors            = require('cors');
 
 const app             = express();
-const environment      = app.get('env');
+const environment     = app.get('env');
 
 const mongoose        = require('mongoose');
 mongoose.Promise      = require('bluebird');
