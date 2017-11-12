@@ -1,5 +1,6 @@
 const File = require('../models/file');
 let watsonText;
+let watsonFilename;
 
 function filesIndex (req, res){
   File
@@ -12,8 +13,9 @@ function filesIndex (req, res){
 
 function filesNew (req, res, next){
   req.body.createdBy = req.user;
-  watsonText = req.body.text;
-
+  watsonText = req.body.html;
+  watsonFilename = req.body.filename;
+  console.log(req.body);
   File
     .create(req.body)
     .then((file) => {
@@ -79,7 +81,7 @@ function watsonFunction(req, res) {
         return;
       }
       textToSpeech.repairWavHeader(audio);
-      fs.writeFileSync('billy.wav', audio);
+      fs.writeFileSync(`${watsonFilename}.wav`, audio);
     });
 }
 
