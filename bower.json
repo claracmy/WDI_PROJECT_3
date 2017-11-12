@@ -17,7 +17,8 @@
   "dependencies": {
     "angular-resource": "^1.6.4",
     "angular-ui-router": "^1.0.4",
-    "satellizer": "^0.15.5"
+    "satellizer": "^0.15.5",
+    "angular-filepicker": "^1.1.4"
   },
   "resolutions": {
     "angular": "^1.6.3"
