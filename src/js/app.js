@@ -2,5 +2,6 @@ angular
   .module('whatsOn', [
     'ui.router',
     'ngResource',
-    'satellizer'
+    'satellizer',
+    'angular-filepicker'
   ]);
