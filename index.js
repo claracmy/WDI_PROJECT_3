@@ -1,17 +1,18 @@
-const express         = require('express');
-const morgan          = require('morgan');
-const bodyParser      = require('body-parser');
-const router          = require('./config/routes');
-const { db, port }    = require('./config/environment');
-const customResponses = require('./lib/customResponses');
-const errorHandler    = require('./lib/errorHandler');
-const cors            = require('cors');
+const express                 = require('express');
+const morgan                  = require('morgan');
+const bodyParser              = require('body-parser');
+const router                  = require('./config/routes');
+const { db, port, secret }    = require('./config/environment');
+const customResponses         = require('./lib/customResponses');
+const errorHandler            = require('./lib/errorHandler');
+const jwtErrorHandler         = require('./lib/jwtErrorHandler');
+const cors                    = require('cors');
+const app                     = express();
+const environment             = app.get('env');
+const expressJWT              = require('express-jwt');
 
-const app             = express();
-const environment     = app.get('env');
-
-const mongoose        = require('mongoose');
-mongoose.Promise      = require('bluebird');
+const mongoose                = require('mongoose');
+mongoose.Promise              = require('bluebird');
 mongoose.connect(db[environment], { useMongoClient: true });
 
 app.use(cors());
@@ -19,6 +20,17 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(`${__dirname}/public`));
+
+app.use('/api', expressJWT({ secret: secret })
+  .unless({
+    path: [
+      { url: '/api/login', methods: ['POST'] },
+      { url: '/api/register', methods: ['POST'] }
+    ]
+  })
+);
+
+app.use(jwtErrorHandler);
 
 app.use(customResponses);
 app.use('/api', router);
