@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
-const s3 = require('../lib/s3');
 
 const fileSchema = new mongoose.Schema({
   filename: { type: String, required: true },
-  file: { type: String },
   createdBy: { type: mongoose.Schema.ObjectId, ref: 'User' },
-  html: { type: String }
+  html: { type: String },
+  audio: { type: String }
 }, {
   timestamps: true
 });

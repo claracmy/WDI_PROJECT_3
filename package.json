@@ -51,6 +51,7 @@
     }
   },
   "dependencies": {
+    "atob": "^2.0.3",
     "aws-sdk": "^2.149.0",
     "bcrypt": "^1.0.3",
     "bluebird": "^3.5.0",
@@ -58,6 +59,7 @@
     "chai": "^4.1.2",
     "cors": "^2.8.4",
     "express": "^4.15.2",
+    "filestack-js": "^0.9.12",
     "fs": "^0.0.1-security",
     "g": "^2.0.1",
     "istanbul": "^0.4.5",
