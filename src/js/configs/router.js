@@ -51,6 +51,11 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/files/:id/edit',
       templateUrl: 'js/views/files/form.html',
       controller: 'filesEditCtrl as vm'
+    })
+    .state('comments', {
+      url: '/files/:id/comments',
+      templateUrl: 'js/views/files/show.html',
+      controller: 'commentsCtrl as vm'
     });
 
   $urlRouterProvider.otherwise('/');

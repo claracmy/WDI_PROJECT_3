@@ -25,7 +25,7 @@ function authenticationsLogin(req, res, next){
       if (!user || !user.validatePassword(req.body.password)) res.status(401).json({ message: 'Unauthorized.' });
 
       const token = jwt.sign({ userId: user.id }, secret, { expiresIn: '1hr' });
-
+      
       return res.status(200).json({
         message: 'Welcome back.',
         token,

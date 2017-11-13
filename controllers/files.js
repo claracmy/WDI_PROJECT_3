@@ -1,6 +1,5 @@
 const File = require('../models/file');
 const Watson = require('../lib/watson');
-console.log(Watson)
 
 function filesIndex (req, res, next){
   File
@@ -16,7 +15,7 @@ function filesNew (req, res, next){
       console.log('result from filesNew', result);
       return File.create({
         filename: req.body.filename,
-        // createdBy: req.user,
+        createdBy: req.body.createdBy,
         html: req.body.html,
         audio: result
       });
@@ -58,10 +57,42 @@ function filesDelete(req, res, next){
     .catch(next);
 }
 
+function commentsCreate(req, res, next) {
+  File
+    .findById(req.params.id)
+    .exec()
+    .then(file => {
+      if(!file) return res.notFound();
+
+      file.comments.push(req.body);
+      return file.save();
+    })
+    .then(file =>
+      res.redirect(`/files/${file.id}`))
+    .catch(next);
+}
+
+function commentsDelete(req, res, next){
+  File
+    .findById(req.params.id)
+    .exec()
+    .then(file => {
+      if (!file) return res.notFound();
+      const comment = file.comments.id(req.params.commentId);
+      comment.remove();
+
+      return file.save();
+    })
+    .then(file => res.redirect(`/files/${file.id}`))
+    .catch(next);
+}
+
 module.exports = {
   index: filesIndex,
   new: filesNew,
   show: filesShow,
   update: filesUpdate,
-  delete: filesDelete
+  delete: filesDelete,
+  createComment: commentsCreate,
+  deleteComment: commentsDelete
 };

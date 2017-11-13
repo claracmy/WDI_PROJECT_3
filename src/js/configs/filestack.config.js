@@ -4,5 +4,7 @@ angular
 
 File.$inject = ['filepickerProvider'];
 function Filestack(filepickerProvider) {
-  filepickerProvider.setKey('Aa4lICuSqS9yb3gD3BfvEz');
+  filepickerProvider.setKey('AE8w9lLxSCSDIMHZ48PQgz');
 }
+
+// AmpArWqqSsw0eUysfqOSQz

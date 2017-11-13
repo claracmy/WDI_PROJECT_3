@@ -25,6 +25,12 @@ router.route('/files/:id')
   .put(files.update)
   .delete(files.delete);
 
+router.route('/files/:id/comments')
+  .post(files.createComment);
+
+router.route('/files/:id/comments/:commentId')
+  .delete(files.deleteComment);
+
 
 
 module.exports = router;

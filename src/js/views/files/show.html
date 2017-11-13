@@ -1,0 +1,18 @@
+<h1>Show page</h1>
+
+<h2>
+Joke title: {{ vm.file.filename }}
+</h2>
+<audio controls ng-src="{{ vm.file.audio }}"></audio>
+<p><a ui-sref="filesIndex">Back to index</a></p>
+
+<form>
+  <h3>Leave your comment</h3>
+  <textarea name="comments" rows="8" cols="80"></textarea>
+  <button>Submit Comments</button>
+</form>
+
+<ul ng-repeat="comment in vm.file track by $index">
+  <h1>{{comment.}}</h1>
+
+</ul>
