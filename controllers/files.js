@@ -1,22 +1,31 @@
 const File = require('../models/file');
+const Watson = require('../lib/watson');
+console.log(Watson)
 
-function filesIndex (req, res){
+function filesIndex (req, res, next){
   File
     .find()
     .exec()
     .then(files => res.status(200).json(files))
-    .catch(() => res.status(500).json({ message: 'something is wrong'}));
-
+    .catch(next);
 }
 
-function filesCreate(req, res){
-  File
-    .create(req.body.file)
+function filesNew (req, res, next){
+  Watson(req)
+    .then(result => {
+      console.log('result from filesNew', result);
+      return File.create({
+        filename: req.body.filename,
+        // createdBy: req.user,
+        html: req.body.html,
+        audio: result
+      });
+    })
     .then(file => res.status(201).json(file))
-    .catch(err => res.status(500).json(err));
+    .catch(next);
 }
 
-function filesShow (req, res){
+function filesShow (req, res, next){
   File
     .findById(req.params.id)
     .exec()
@@ -24,10 +33,10 @@ function filesShow (req, res){
       if (!file) return res.status(200).json({ message: 'file not found'});
       return res.status(200).json(file);
     })
-    .catch(() => res.status(500).json({ message: 'something went wrong'}));
+    .catch(next);
 }
 
-function filesUpdate(req, res){
+function filesUpdate(req, res, next){
   File
     .findByIdAndUpdate(req.params.id)
     .exec()
@@ -35,10 +44,10 @@ function filesUpdate(req, res){
       if (!file) return res.status(404).json({ message: 'file not found '});
       return res.status(200).json( { file } );
     })
-    .catch(() => res.status(500).json({ message: 'something went wrong' }));
+    .catch(next);
 }
 
-function filesDelete(req, res){
+function filesDelete(req, res, next){
   File
     .findByIdAndRemove(req.params.id)
     .exec()
@@ -46,12 +55,12 @@ function filesDelete(req, res){
       if (!file) return res.status(404).json({ message: 'file not found'});
       return res.sendStatus(204);
     })
-    .catch(() => res.status(500).json({ message: 'something went wrong' }));
+    .catch(next);
 }
 
 module.exports = {
   index: filesIndex,
-  create: filesCreate,
+  new: filesNew,
   show: filesShow,
   update: filesUpdate,
   delete: filesDelete

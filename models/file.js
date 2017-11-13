@@ -2,8 +2,9 @@ const mongoose = require('mongoose');
 
 const fileSchema = new mongoose.Schema({
   filename: { type: String, required: true },
-  text: { type: String, required: true },
-  createdBy: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
+  createdBy: { type: mongoose.Schema.ObjectId, ref: 'User' },
+  html: { type: String },
+  audio: { type: String }
 }, {
   timestamps: true
 });

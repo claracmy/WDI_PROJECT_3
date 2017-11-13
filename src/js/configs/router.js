@@ -39,7 +39,7 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('filesNew', {
       url: '/files/new',
-      templateUrl: 'js/views/files/form.html',
+      templateUrl: '/js/views/files/form.html',
       controller: 'filesNewCtrl as vm'
     })
     .state('filesShow', {
