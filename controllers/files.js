@@ -20,7 +20,6 @@ function filesNew (req, res, next){
         audio: result
       });
     })
-    .then(file => res.status(201).json(file))
     .catch(next);
 }
 
