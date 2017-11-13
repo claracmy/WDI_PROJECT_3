@@ -1,4 +1,6 @@
 const File = require('../models/file');
+let watsonText;
+let watsonFilename;
 
 function filesIndex (req, res){
   File
@@ -9,11 +11,18 @@ function filesIndex (req, res){
 
 }
 
-function filesCreate(req, res){
+function filesNew (req, res, next){
+  req.body.createdBy = req.user;
+  watsonText = req.body.html;
+  watsonFilename = req.body.filename;
+  console.log(req.body);
   File
-    .create(req.body.file)
-    .then(file => res.status(201).json(file))
-    .catch(err => res.status(500).json(err));
+    .create(req.body)
+    .then((file) => {
+      watsonFunction();
+      res.status(201).json(file);
+    })
+    .catch(next);
 }
 
 function filesShow (req, res){
@@ -49,9 +58,36 @@ function filesDelete(req, res){
     .catch(() => res.status(500).json({ message: 'something went wrong' }));
 }
 
+const TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
+const fs = require('fs');
+
+function watsonFunction(req, res) {
+
+  const textToSpeech = new TextToSpeechV1({
+    username: 'd643b333-42a6-4c0c-a04d-65d946d7b203',
+    password: 'nQfY6cXErZ8v'
+  });
+
+  const params = {
+    text: `${watsonText}`,
+    voice: 'en-US_AllisonVoice', // Optional voice
+    accept: 'audio/wav'
+  };
+
+  textToSpeech
+    .synthesize(params, function(err, audio) {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      textToSpeech.repairWavHeader(audio);
+      fs.writeFileSync(`${watsonFilename}.wav`, audio);
+    });
+}
+
 module.exports = {
   index: filesIndex,
-  create: filesCreate,
+  new: filesNew,
   show: filesShow,
   update: filesUpdate,
   delete: filesDelete

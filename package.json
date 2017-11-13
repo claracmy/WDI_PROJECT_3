@@ -51,6 +51,7 @@
     }
   },
   "dependencies": {
+    "aws-sdk": "^2.149.0",
     "bcrypt": "^1.0.3",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.1",
@@ -64,6 +65,7 @@
     "mocha": "^4.0.1",
     "mongoose": "^4.8.6",
     "morgan": "^1.8.1",
+    "multer": "^1.3.0",
     "request-promise": "^4.2.2",
     "supertest": "^3.0.0",
     "tree-cli": "^0.4.12",

@@ -356,10 +356,9 @@ function expectFileIdTest(done){
         .to.have.property('createdBy')
         .and.to.be.a('string');
 
-      expect(firstFile){
+      expect(firstFile)
         .to.have.property('text')
         .and.to.be.a('string');
-      }
 
       expect(firstFile)
         .to.have.property('createdAt')
