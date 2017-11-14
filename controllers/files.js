@@ -1,9 +1,6 @@
 const File = require('../models/file');
 const Watson = require('../lib/watson');
-<<<<<<< HEAD
-//console.log(Watson)
-=======
->>>>>>> ea5553e24aaa5217683a55f4cf938897f27effbf
+
 
 function filesIndex (req, res, next){
   File
@@ -19,11 +16,7 @@ function filesNew (req, res, next){
       console.log('result from filesNew', result);
       return File.create({
         filename: req.body.filename,
-<<<<<<< HEAD
-        //createdBy: req.user,
-=======
         createdBy: req.body.createdBy,
->>>>>>> ea5553e24aaa5217683a55f4cf938897f27effbf
         html: req.body.html,
         audio: result
       });

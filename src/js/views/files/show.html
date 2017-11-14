@@ -4,7 +4,11 @@
 Joke title: {{ vm.file.filename }}
 </h2>
 <audio controls ng-src="{{ vm.file.audio }}"></audio>
-<p><a ui-sref="filesIndex">Back to index</a></p>
+<h3><a ui-sref="filesShow({ id: file.id })">{{vm.file.user}}</a></h3>
+<p><a href="/files" ui-sref="filesIndex">Back to index</a></p>
+<a href="/files/:id/edit" ui-sref="filesEdit({id: vm.file.id })">edit</a>
+<a href="#" ui-sref="filesShowCtrl">delete</a>
+
 
 <form>
   <h3>Leave your comment</h3>
