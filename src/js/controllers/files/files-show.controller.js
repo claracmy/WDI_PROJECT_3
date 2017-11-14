@@ -12,7 +12,7 @@ function filesShowCtrl(File, $stateParams, $state, currentUserService) {
   vm.submitComment = comment => {
     console.log('working');
     File
-      .update({ id: comment.id }, comment)
+      .update({ id: comment._id }, comment)
       .$promise
       .then(() => {
         $state.go('filesShow', {id: vm.file.id});
@@ -22,7 +22,7 @@ function filesShowCtrl(File, $stateParams, $state, currentUserService) {
 
   vm.delete = file => {
     File
-      .remove({ id: file.id })
+      .remove({ id: file._id })
       .$promise
       .then(() => {
         $state.go('filesEdit');

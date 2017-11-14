@@ -9,25 +9,33 @@
   <h3><a ui-sref="filesShow({ id: file.id })">{{vm.file.user}}</a></h3>
   <p><a href="/files" ui-sref="filesIndex">Back to index</a></p>
   <a href="/files/:id/edit" ui-sref="filesEdit({id: vm.file.id })">edit</a>
-  <button ng-click="settings.vm.delete">delete</button>
 
 </div>
 
 
 
 
-<!-- <div class="comments" ng-controller="createCommentCtrl"> -->
+ <div class="comments" ng-controller="createCommentCtrl">
 
   <form>
     <h3>Leave your comment</h3>
     <textarea name="comments" rows="8" cols="80" ng-model="vm.file.comments.content"></textarea>
     <button ng-click="vm.submitComment()">Submit Comments</button>
   </form>
+  <!-- <div ng-controller="commentsDeleteCtrl as comments"> -->
+
+    <!-- <button href="/files" ng-click="vm.commentDelete()">delete</button> -->
+
+  <!-- </div> -->
 
   <h1>Comments</h1>
 
   <ul ng-repeat="comment in vm.file.comments track by $index">
+
     <p>{{ comment.content}}</p>
+
+
+
   </ul>
 
-<!-- </div> -->
+</div>
