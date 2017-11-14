@@ -1,4 +1,5 @@
-<img ng-src="{{ profile.user.image }}" alt="profile.user.username">
+<h1>User profile</h1>
+<img ng-src="{{ vm.user.image }}" alt="profile.user.username">
 <h2>{{ profile.user.username }}</h2>
 <a href="mailto:{{ profile.user.email }}" ng-if="profile.user.email">{{ profile.user.email }}</a>
 <p>Facebook Id: <strong>{{ profile.user.facebookId }}</strong></p>

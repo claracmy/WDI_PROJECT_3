@@ -10,8 +10,10 @@ function facebook(req, res, next) {
     method: 'POST',
     url: oauth.facebook.accessTokenURL,
     qs: {
+      code: req.body.code,
       client_id: oauth.facebook.clientId,
-      code: req.body.code
+      client_secret: oauth.facebook.clientSecret,
+      redirect_uri: req.body.redirectUri
     },
     json: true
   })
@@ -19,7 +21,6 @@ function facebook(req, res, next) {
     return rp({
       method: 'GET',
       url: oauth.facebook.profileURL,
-      uri: oauth.facebook.redirectUri,
       qs: token,
       json: true,
       headers: {
@@ -42,12 +43,14 @@ function facebook(req, res, next) {
         return user.save();
       });
   })
-  .then((user) => {
+  .then(user => {
+    console.log(user);
     const payload = { userId: user.id };
     const token = jwt.sign(payload, secret, { expiresIn: '1hr' });
 
     return res.json({
       token,
+      user,
       message: `Welcome back ${user.username}`
     });
   })

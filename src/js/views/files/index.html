@@ -2,7 +2,7 @@
 
 <ul>
   <li ng-repeat="file in vm.files track by $index">
-    <h2><a ui-sref="filesShow({id:file.id})">{{ file.name }}</a></h2>
+    <h2><a ui-sref="filesShow({ id: file._id })">{{ file.filename }}</a></h2>
     <p>Text: {{ file.text }}</p>
     <audio controls><source ng-src="{{ file.audio }}" type="audio/wav"></audio>
   </li>

@@ -1,9 +1,9 @@
-const router = require('express').Router();
+const router          = require('express').Router();
 const authentications = require('../controllers/authentications');
+const oauth           = require('../controllers/oauth');
 const users           = require('../controllers/users');
 const files           = require('../controllers/files');
-const secureRoute = require('../lib/secureRoute');
-const oauth = require('../controllers/oauth');
+const secureRoute     = require('../lib/secureRoute');
 
 router.route('/register')
   .post(authentications.register);
@@ -29,6 +29,10 @@ router.route('/files/:id')
   .put(files.update)
   .delete(files.delete);
 
+router.route('/files/:id/comments')
+  .post(files.createComment);
 
+router.route('/files/:id/comments/:commentId')
+  .delete(files.deleteComment);
 
 module.exports = router;
