@@ -2,27 +2,37 @@ angular
   .module('whatsOn')
   .controller('filesShowCtrl', filesShowCtrl);
 
-filesShowCtrl.$inject = ['File', '$stateParams', '$state', 'currentUserService'];
+filesShowCtrl.$inject = ['File', '$stateParams', '$state'];
 
-function filesShowCtrl(File, $stateParams, $state, currentUserService) {
+function filesShowCtrl(File, $stateParams, $state) {
   const vm = this;
   vm.file = File.get($stateParams);
-  vm.user = currentUserService.currentUser.id;
 
-  vm.submitComment = comment => {
-    console.log('working');
+
+  vm.submitComment = function() {
     File
-      .update({ id: comment.id }, comment)
+      .addComment({ id: vm.file._id }, vm.comment)
       .$promise
       .then(() => {
-        $state.go('filesShow', {id: vm.file.id});
+        vm.comment = {};
+        vm.file = File.get({ id: $stateParams.id });
+      });
+  };
+
+
+  vm.deleteComment = function(comment) {
+    File
+      .deleteComment({id: vm.file._id, commentId: comment._id})
+      .$promise
+      .then(() => {
+        console.log('deleted');
       });
   };
 
 
   vm.delete = file => {
     File
-      .remove({ id: file.id })
+      .remove({ id: file._id })
       .$promise
       .then(() => {
         $state.go('filesIndex');
