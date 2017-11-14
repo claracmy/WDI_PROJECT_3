@@ -15,10 +15,11 @@ function filesShowCtrl(File, $stateParams, $state) {
       .$promise
       .then(() => {
         vm.comment = {};
+        vm.file = File.get({ id: $stateParams.id });
       });
   };
 
-  
+
   vm.deleteComment = function(comment) {
     File
       .deleteComment({id: vm.file._id, commentId: comment._id})
