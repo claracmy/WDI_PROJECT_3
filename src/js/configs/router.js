@@ -13,10 +13,10 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
   $locationProvider.html5Mode(true);
 
   $stateProvider
-    .state('home', {
-      url: '/',
-      templateUrl: 'js/views/statics/home.html'
-    })
+    // .state('home', {
+    //   url: '/',
+    //   templateUrl: 'js/views/statics/home.html'
+    // })
     .state('register', {
       url: '/register',
       templateUrl: 'js/views/authentications/register.html',
@@ -33,7 +33,7 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       controller: 'usersIndexCtrl as vm'
     })
     .state('filesIndex', {
-      url: '/files',
+      url: '/',
       templateUrl: 'js/views/files/index.html',
       controller: 'filesIndexCtrl as vm'
     })
@@ -47,15 +47,10 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       templateUrl: 'js/views/files/show.html',
       controller: 'filesShowCtrl as vm'
     })
-    .state('filesEdit', {
-      url: '/files/:id/edit',
-      templateUrl: 'js/views/files/form.html',
-      controller: 'filesEditCtrl as vm'
-    })
     .state('comments', {
-      url: '/files/:id',
+      url: '/files/:id/comments',
       templateUrl: 'js/views/files/show.html',
-      controller: 'filesSowCtrl as vm'
+      controller: 'filesShowCtrl as vm'
     });
 
   $urlRouterProvider.otherwise('/');

@@ -11,6 +11,5 @@ function File(
   API){
   return $resource(`${API}/files/:id`, { id: '@_id'}, {
     'update': { method: 'PUT' },
-    'addComment': { url: `${API}/files/:id/comments`, method: 'POST' }
-  });
+    'addComment': { url: `${API}/files/:id/comments`, id: '@_id', method: 'POST' }});
 }

@@ -2,35 +2,62 @@ angular
   .module('whatsOn')
   .controller('filesShowCtrl', filesShowCtrl);
 
-filesShowCtrl.$inject = ['File', '$stateParams', '$state', 'currentUserService'];
+filesShowCtrl.$inject = ['File', '$stateParams', '$state'];
 
-function filesShowCtrl(File, $stateParams, $state, currentUserService) {
+function filesShowCtrl(File, $stateParams, $state) {
   const vm = this;
-  console.log('vm.user before', vm.user);
-  vm.file = File.get($stateParams);
-  vm.user = currentUserService.currentUser.id;
-  console.log('vm.user after', vm.user);
-  console.log(vm);
-console.log('vm.file', vm.file);
-// console.log('vm.file._id', vm.file._id); undefined
-// console.log('vm.file.id', vm.file.id); undefined
+  console.log('this is vm', vm);
+  vm.boolean = true;
 
-  vm.submitComment = function(comment) {
-console.log('working');
-console.log('comment', comment);
-console.log('comment.content', comment.content);
-console.log('stateparams', $stateParams);
+  File
+    .get({ id: $stateParams.id })
+    .$promise
+    .then((file) => {
+      vm.file = file;
+      console.log('this is vm.file', vm.file);
+    });
+
+  vm.editTitle = editTitle;
+  vm.showEditForm = showEditForm;
+
+  vm.submitComment = function() {
+    console.log('submit comment function is fired');
     File
-      .addComment( { id: $stateParams.id }, vm.comment) //it is throwing an error at that point
+      .addComment({ id: vm.file._id }, vm.comment)
       .$promise
       .then(() => {
-        console.log('reached .then promise');
-        console.log('vm.file after submit', vm.file);
-        vm.comment = '';
-        $state.go('filesShow', {id: vm.file.id});
+        console.log('this is vm in the submit function', vm);
+        vm.comment = {};
+        vm.file = File.get({ id: $stateParams.id });
       });
   };
 
+  // vm.deleteComment = function(comment) {
+  //   File
+  //     .deleteComment({id: vm.file._id, commentId: comment._id})
+  //     .$promise
+  //     .then(() => {
+  //       console.log('deleted');
+  //     });
+  // };
+
+  function showEditForm() {
+    console.log('boolean before edit', vm.boolean);
+    vm.boolean = !vm.boolean;
+    console.log('boolean before edit', vm.boolean);
+  }
+
+  function editTitle() {
+    console.log('edittitle function fired');
+    File
+      .update({ id: $stateParams.id }, vm.file)
+      .$promise
+      .then(() => {
+        console.log('this is the new title', vm.file);
+        vm.file = File.get({ id: $stateParams.id });
+        vm.boolean = !vm.boolean;
+      });
+  }
 
   vm.delete = file => {
     File
