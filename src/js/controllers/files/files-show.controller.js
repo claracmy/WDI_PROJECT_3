@@ -25,7 +25,7 @@ function filesShowCtrl(File, $stateParams, $state, currentUserService) {
       .remove({ id: file.id })
       .$promise
       .then(() => {
-        $state.go('filesIndex');
+        $state.go('filesEdit');
       });
   };
 }

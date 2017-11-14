@@ -3,11 +3,15 @@
 <h2>
   Joke title: {{ vm.file.filename }}
 </h2>
-<audio controls ng-src="{{ vm.file.audio }}"></audio>
-<h3><a ui-sref="filesShow({ id: file.id })">{{vm.file.user}}</a></h3>
-<p><a href="/files" ui-sref="filesIndex">Back to index</a></p>
-<a href="/files/:id/edit" ui-sref="filesEdit({id: vm.file.id })">edit</a>
-<a href="#" ui-sref="filesShowCtrl">delete</a>
+<div ng-controller="filesShowCtrl as settings">
+
+  <audio controls ng-src="{{ vm.file.audio }}"></audio>
+  <h3><a ui-sref="filesShow({ id: file.id })">{{vm.file.user}}</a></h3>
+  <p><a href="/files" ui-sref="filesIndex">Back to index</a></p>
+  <a href="/files/:id/edit" ui-sref="filesEdit({id: vm.file.id })">edit</a>
+  <button ng-click="settings.vm.delete">delete</button>
+
+</div>
 
 
 

@@ -52,11 +52,11 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       templateUrl: 'js/views/files/form.html',
       controller: 'filesEditCtrl as vm'
     });
-    // .state('comments', {
-    //   url: '/files/:id',
-    //   templateUrl: 'js/views/files/show.html',
-    //   controller: 'createCommentCtrl as vm'
-    // });
+  // .state('comments', {
+  //   url: '/files/:id',
+  //   templateUrl: 'js/views/files/show.html',
+  //   controller: 'createCommentCtrl as vm'
+  // });
 
   $urlRouterProvider.otherwise('/');
 }
