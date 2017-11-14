@@ -10,7 +10,7 @@
     <!-- inject:css -->
     <!-- endinject -->
   </head>
-  <body>
+  <body ng-controller="mainCtrl as main">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <a class="navbar-brand" ui-sref="home">Whats-On</a>
@@ -20,22 +20,22 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
+          <li ng-if="main.user" class="nav-item">
             <a class="nav-link" ui-sref="usersIndex">Users</a>
           </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
+          <li class="nav-item" ng-if="!main.user">
             <a class="nav-link" ui-sref="register">Register</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" ng-if="!main.user">
             <a class="nav-link" ui-sref="login">Login</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" ui-sref="#">Hello {{ main.user.username }}</a>
+          <li class="nav-item" ng-if="main.user">
+            <a class="nav-link" href="#">Hello {{ main.user.username }}</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" ui-sref="usersIndex" ng-click="login">Logout</a>
+          <li class="nav-item" ng-if="main.user">
+            <a class="nav-link" href="#" ng-click="main.logout()">Logout</a>
           </li>
         </ul>
       </div>

@@ -4,10 +4,10 @@
   Joke title: {{ vm.file.filename }}
 </h2>
 <audio controls ng-src="{{ vm.file.audio }}"></audio>
-<h3><a ui-sref="filesShow({ id: file.id })">{{vm.file.user}}</a></h3>
-<p><a href="/files" ui-sref="filesIndex">Back to index</a></p>
+<!-- <h3><a ui-sref="filesShow({ id: file.id })">{{vm.file.user}}</a></h3> -->
+<!-- <p><a href="/files" ui-sref="filesIndex">Back to index</a></p>
 <a href="/files/:id/edit" ui-sref="filesEdit({id: vm.file.id })">edit</a>
-<a href="#" ui-sref="filesShowCtrl">delete</a>
+<a href="#" ui-sref="filesShowCtrl">delete</a> -->
 
 
   <form ng-submit="vm.submitComment()">
@@ -22,5 +22,5 @@
   <ul ng-repeat="comment in vm.file.comments track by $index">
     <p>{{ comment.content }}</p>
     <p>Created by {{ comment.createdBy.username }}</p>
-    <div ng-if="comment.createdBy.id === main.user.id">Delete</div>
+    <button ng-click="vm.deleteComment(comment)"ng-if="comment.createdBy.id === main.user.id">Delete</button>
   </ul>

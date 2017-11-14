@@ -6,5 +6,3 @@ File.$inject = ['filepickerProvider'];
 function Filestack(filepickerProvider) {
   filepickerProvider.setKey('AE8w9lLxSCSDIMHZ48PQgz');
 }
-
-// AmpArWqqSsw0eUysfqOSQz
