@@ -13,7 +13,6 @@ function filesIndex (req, res, next){
 function filesNew (req, res, next){
   Watson(req)
     .then(result => {
-      console.log('result from filesNew', result);
       return File.create({
         filename: req.body.filename,
         createdBy: req.body.createdBy,
@@ -27,6 +26,7 @@ function filesNew (req, res, next){
 function filesShow (req, res, next){
   File
     .findById(req.params.id)
+    .populate('comments.createdBy')
     .exec()
     .then(file => {
       if (!file) return res.status(200).json({ message: 'file not found'});
@@ -63,12 +63,11 @@ function commentsCreate(req, res, next) {
     .exec()
     .then(file => {
       if(!file) return res.notFound();
-
+      req.body.createdBy = req.user.userId;
       file.comments.push(req.body);
-      return file.save();
+      file.save();
+      return res.status(200).json({ file });
     })
-    .then(file =>
-      res.redirect(`/files/${file.id}`))
     .catch(next);
 }
 
@@ -78,12 +77,12 @@ function commentsDelete(req, res, next){
     .exec()
     .then(file => {
       if (!file) return res.notFound();
+      // req.body.createdBy = req.user.userId;
       const comment = file.comments.id(req.params.commentId);
       comment.remove();
 
       return file.save();
     })
-    .then(file => res.redirect(`/files/${file.id}`))
     .catch(next);
 }
 

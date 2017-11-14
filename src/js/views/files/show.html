@@ -14,20 +14,17 @@
 </div>
 
 
-
-
-<!-- <div class="comments" ng-controller="createCommentCtrl"> -->
-
-  <form>
+  <form ng-submit="vm.submitComment()">
     <h3>Leave your comment</h3>
-    <textarea name="comments" rows="8" cols="80" ng-model="vm.file.comments.content"></textarea>
-    <button ng-click="vm.submitComment()">Submit Comments</button>
+    <label for="comments">Comment</label>
+    <input type="text" name="comments" ng-model="vm.comment.content"/>
+    <input type="submit" id="submit" value="Submit" />
   </form>
 
   <h1>Comments</h1>
 
   <ul ng-repeat="comment in vm.file.comments track by $index">
-    <p>{{ comment.content}}</p>
+    <p>{{ comment.content }}</p>
+    <p>Created by {{ comment.createdBy.username }}</p>
+    <div ng-if="comment.createdBy.id === main.user.id">Delete</div>
   </ul>
-
-<!-- </div> -->
