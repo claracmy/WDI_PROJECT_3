@@ -32,7 +32,7 @@ function filesShowCtrl(File, $stateParams, $state) {
       .remove({ id: file.id })
       .$promise
       .then(() => {
-        $state.go('filesIndex');
+        $state.go('filesEdit');
       });
   };
 }
