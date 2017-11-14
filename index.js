@@ -12,6 +12,7 @@ const environment             = app.get('env');
 const expressJWT              = require('express-jwt');
 
 const mongoose                = require('mongoose');
+mongoose.plugin(require('./lib/globalToJSON'));
 mongoose.Promise              = require('bluebird');
 mongoose.connect(db[environment], { useMongoClient: true });
 

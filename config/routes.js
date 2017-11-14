@@ -1,9 +1,8 @@
-const express = require('express');
-const router  = express.Router();
-
+const router = require('express').Router();
 const authentications = require('../controllers/authentications');
 const users           = require('../controllers/users');
 const files           = require('../controllers/files');
+const secureRoute     = require('../lib/secureRoute');
 
 router.route('/register')
   .post(authentications.register);
