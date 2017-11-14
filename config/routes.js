@@ -1,5 +1,6 @@
-const router = require('express').Router();
+const router          = require('express').Router();
 const authentications = require('../controllers/authentications');
+const oauth           = require('../controllers/oauth');
 const users           = require('../controllers/users');
 const files           = require('../controllers/files');
 const secureRoute     = require('../lib/secureRoute');
@@ -12,9 +13,13 @@ router.route('/login')
 router.route('/users')
   .get(users.index);
 router.route('/users/:id')
+  .all(secureRoute)
   .get(users.show)
   .put(users.update)
   .delete(users.delete);
+
+router.route('/oauth/facebook')
+  .post(oauth.facebook);
 
 router.route('/files')
   .get(files.index)
@@ -29,7 +34,5 @@ router.route('/files/:id/comments')
 
 router.route('/files/:id/comments/:commentId')
   .delete(files.deleteComment);
-
-
 
 module.exports = router;
