@@ -15,24 +15,26 @@ function filesShowCtrl(File, $stateParams, $state) {
       .$promise
       .then(() => {
         vm.comment = {};
-        // vm.file = File.get({ id: $stateParams.id });
       });
   };
-  // 
-  // vm.deleteComment = function() {
-  //   File
-  //     .remove({ id: vm.file_id }, vm.comment)
-  //     .$promise
-  //     .then();
-  // };
+
+  
+  vm.deleteComment = function(comment) {
+    File
+      .deleteComment({id: vm.file._id, commentId: comment._id})
+      .$promise
+      .then(() => {
+        console.log('deleted');
+      });
+  };
 
 
   vm.delete = file => {
     File
-      .remove({ id: file.id })
+      .remove({ id: file._id })
       .$promise
       .then(() => {
-        $state.go('filesEdit');
+        $state.go('filesIndex');
       });
   };
 }

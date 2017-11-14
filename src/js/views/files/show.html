@@ -1,30 +1,26 @@
 <h1>Show page</h1>
 
-<h2>
-  Joke title: {{ vm.file.filename }}
-</h2>
-<div ng-controller="filesShowCtrl as settings">
+    <h2>
+      Joke title: {{ vm.file.filename }}
+    </h2>
+    <audio controls ng-src="{{ vm.file.audio }}"></audio>
+    <p><a ui-sref="filesIndex">Back to index</a></p>
 
-  <audio controls ng-src="{{ vm.file.audio }}"></audio>
-  <h3><a ui-sref="filesShow({ id: file.id })">{{vm.file.user}}</a></h3>
-  <p><a href="/files" ui-sref="filesIndex">Back to index</a></p>
-  <a href="/files/:id/edit" ui-sref="filesEdit({id: vm.file.id })">edit</a>
-  <button ng-click="settings.vm.delete">delete</button>
-
-</div>
+    <a href="/files/:id/edit" ui-sref="filesEdit({id: vm.file._id })">edit</a>
+    <button ng-click="vm.delete(vm.file)">Delete</button>
 
 
-  <form ng-submit="vm.submitComment()">
-    <h3>Leave your comment</h3>
-    <label for="comments">Comment</label>
-    <input type="text" name="comments" ng-model="vm.comment.content"/>
-    <input type="submit" id="submit" value="Submit" />
-  </form>
+    <form ng-submit="vm.submitComment()">
+      <h3>Leave your comment</h3>
+      <label for="comments">Comment</label>
+      <input type="text" name="comments" ng-model="vm.comment.content"/>
+      <input type="submit" id="submit" value="Submit" />
+    </form>
 
-  <h1>Comments</h1>
+    <h1>Comments</h1>
 
-  <ul ng-repeat="comment in vm.file.comments track by $index">
-    <p>{{ comment.content }}</p>
-    <p>Created by {{ comment.createdBy.username }}</p>
-    <button ng-click="vm.deleteComment(comment)"ng-if="comment.createdBy.id === main.user.id">Delete</button>
-  </ul>
+    <ul ng-repeat="comment in vm.file.comments track by $index">
+      <p>{{ comment.content }}</p>
+      <p>Created by {{ comment.createdBy.username }}</p>
+      <button ng-click="vm.deleteComment(comment)" ng-if="comment.createdBy.id === main.user.id">Delete</button>
+    </ul>

@@ -39,7 +39,7 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('filesNew', {
       url: '/files/new',
-      templateUrl: '/js/views/files/form.html',
+      templateUrl: 'js/views/files/form.html',
       controller: 'filesNewCtrl as vm'
     })
     .state('filesShow', {
@@ -54,6 +54,11 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('comments', {
       url: '/files/:id/comments',
+      templateUrl: 'js/views/files/show.html',
+      controller: 'filesShowCtrl as vm'
+    })
+    .state('commentsDelete', {
+      url: '/files/:id/comments/:commentId',
       templateUrl: 'js/views/files/show.html',
       controller: 'filesShowCtrl as vm'
     });
