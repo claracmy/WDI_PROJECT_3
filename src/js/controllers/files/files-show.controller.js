@@ -18,7 +18,7 @@ function filesShowCtrl(File, $stateParams, $state) {
         // vm.file = File.get({ id: $stateParams.id });
       });
   };
-
+  // 
   // vm.deleteComment = function() {
   //   File
   //     .remove({ id: vm.file_id }, vm.comment)

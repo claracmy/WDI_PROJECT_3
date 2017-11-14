@@ -30,5 +30,5 @@
   <ul ng-repeat="comment in vm.file.comments track by $index">
     <p>{{ comment.content }}</p>
     <p>Created by {{ comment.createdBy.username }}</p>
-    <div ng-if="comment.createdBy.id === main.user.id">Delete</div>
+    <button ng-click="vm.deleteComment(comment)"ng-if="comment.createdBy.id === main.user.id">Delete</button>
   </ul>
