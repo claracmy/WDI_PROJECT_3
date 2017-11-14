@@ -27,6 +27,15 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       templateUrl: 'js/views/authentications/login.html',
       controller: 'loginCtrl as vm'
     })
+    .state('oauth', {
+      url:'/oauth/facebook',
+      templateUrl: 'js/views/authentications/login.html',
+      controller: 'loginCtrl as vm'
+    })
+    .state('usersShow', {
+      url: '/users/:id',
+      templateUrl: 'js/views/users/show.html'
+    })
     .state('usersIndex', {
       url: '/users',
       templateUrl: 'js/views/users/index.html',
@@ -39,7 +48,7 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('filesNew', {
       url: '/files/new',
-      templateUrl: '/js/views/files/form.html',
+      templateUrl: 'js/views/files/form.html',
       controller: 'filesNewCtrl as vm'
     })
     .state('filesShow', {
@@ -49,6 +58,11 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('comments', {
       url: '/files/:id/comments',
+      templateUrl: 'js/views/files/show.html',
+      controller: 'filesShowCtrl as vm'
+    })
+    .state('commentsDelete', {
+      url: '/files/:id/comments/:commentId',
       templateUrl: 'js/views/files/show.html',
       controller: 'filesShowCtrl as vm'
     });

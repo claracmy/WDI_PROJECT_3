@@ -92,7 +92,6 @@ function commentsDelete(req, res, next){
     .exec()
     .then(file => {
       if (!file) return res.notFound();
-      // req.body.createdBy = req.user.userId;
       const comment = file.comments.id(req.params.commentId);
       comment.remove();
 
