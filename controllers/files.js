@@ -24,11 +24,13 @@ function filesNew (req, res, next){
 }
 
 function filesShow (req, res, next){
+  console.log(req);
   File
     .findById(req.params.id)
     .exec()
     .then(file => {
       if (!file) return res.status(200).json({ message: 'file not found'});
+console.log(res);
       return res.status(200).json(file);
     })
     .catch(next);
@@ -57,6 +59,7 @@ function filesDelete(req, res, next){
 }
 
 function commentsCreate(req, res, next) {
+  console.log(req.body);
   File
     .findById(req.params.id)
     .exec()

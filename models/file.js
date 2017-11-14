@@ -27,5 +27,5 @@ fileSchema.methods.belongsTo = function fileBelongsTo(user) {
   return user.id === this.createdBy.toString();
 };
 
-
 module.exports = mongoose.model('File', fileSchema);
+module.exports = mongoose.model('Comment', commentSchema);

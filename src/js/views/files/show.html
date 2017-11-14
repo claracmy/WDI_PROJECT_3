@@ -1,25 +1,26 @@
 <h1>Show page</h1>
+<!-- <div ng-controller="filesShowCtrl as vm"> -->
+  <h2>
+    Joke title: {{ vm.file.filename }}
+  </h2>
+  <audio controls ng-src="{{ vm.file.audio }}"></audio>
+  <p><a ui-sref="filesIndex">Back to index</a></p>
 
-<h2>
-  Joke title: {{ vm.file.filename }}
-</h2>
-<audio controls ng-src="{{ vm.file.audio }}"></audio>
-<p><a ui-sref="filesIndex">Back to index</a></p>
+<!-- </div> -->
 
 
 
 <!-- <div class="comments" ng-controller="createCommentCtrl"> -->
 
-  <form>
+  <form ng-submit="vm.submitComment(vm.file.comments)">
     <h3>Leave your comment</h3>
-    <textarea name="comments" rows="8" cols="80" ng-model="vm.file.comments.content"></textarea>
-    <button ng-click="vm.submitComment()">Submit Comments</button>
+    <label for="comments">Comment</label>
+    <input type="text" name="comments" ng-model="vm.file.comments.content">
+    <input type="submit" id="submit" value="Submit" />
   </form>
 
   <h1>Comments</h1>
 
   <ul ng-repeat="comment in vm.file.comments track by $index">
-    <p>{{ comment.content}}</p>
+    <li><p>{{ comment.content }}</p></li>
   </ul>
-
-<!-- </div> -->
