@@ -63,11 +63,6 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       templateUrl: 'js/views/files/show.html',
       controller: 'filesShowCtrl as vm'
     })
-    .state('unlike', {
-      url: '/files/:id/likes/:likeId',
-      templateUrl: 'js/views/files/show.html',
-      controller: 'filesShowCtrl as vm'
-    })
     .state('comments', {
       url: '/files/:id/comments',
       templateUrl: 'js/views/files/show.html',

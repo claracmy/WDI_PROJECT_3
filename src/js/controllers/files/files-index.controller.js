@@ -11,7 +11,5 @@ function filesIndexCtrl(File) {
     .$promise
     .then(files => {
       vm.files = files;
-      console.log('vm.files', vm.files);
-      console.log('vm.files.length', vm.files.length);
     });
 }

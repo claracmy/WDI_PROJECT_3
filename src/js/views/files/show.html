@@ -32,7 +32,5 @@
       <p>Created by {{ comment.createdBy.username }}</p>
       <button ng-click="vm.deleteComment(comment)" ng-if="comment.createdBy.id === main.user.id">Delete</button>
     </ul>
-
+  <p>Likes: {{ vm.file.likes.length}}</p>
   <button ng-click="vm.like()">Like</button>
-  <!-- ng-if="vm.file.like.likedBy !== main.user.id" -->
-  <button ng-click="vm.unlike(vm.file.likes)" ng-if="">Unlike</button>

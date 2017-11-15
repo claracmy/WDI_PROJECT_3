@@ -33,19 +33,10 @@ function filesShowCtrl(File, $stateParams, $state) {
       .addLike({ id: vm.file._id }, vm.file.likes)
       .$promise
       .then(() => {
-        vm.file = File.get({ id: $stateParams.id });
+        getFile();
       });
   };
 
-  vm.unlike = function(like) {
-    console.log(like);
-    File
-      .removeLike({ id: vm.file._id, likeId: like._id })
-      .$promise
-      .then(() => {
-        console.log('unliked');
-      });
-  };
 
   vm.submitComment = function() {
     File
@@ -62,7 +53,6 @@ function filesShowCtrl(File, $stateParams, $state) {
       .deleteComment({id: vm.file._id, commentId: comment._id})
       .$promise
       .then(() => {
-        console.log('deleted');
         getFile();
       });
   };
@@ -72,13 +62,14 @@ function filesShowCtrl(File, $stateParams, $state) {
       .get({ id: $stateParams.id })
       .$promise
       .then(data => {
+        console.log(data);
         vm.comment = {};
         vm.file.comments = data.comments;
+        vm.file.likes = data.likes;
       });
   }
 
   function showEditForm() {
-    console.log('boolean before edit', vm.boolean);
     vm.boolean = !vm.boolean;
   }
 

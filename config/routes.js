@@ -34,8 +34,6 @@ router.route('/files/:id')
 
 router.route('/files/:id/likes')
   .post(likes.new);
-router.route('/files/:id/likes/:likeId')
-  .delete(likes.delete);
 
 router.route('/files/:id/comments')
   .post(files.createComment);
