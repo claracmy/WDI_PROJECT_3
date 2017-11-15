@@ -1,7 +1,19 @@
 <h1>User profile</h1>
+
 <img ng-src="{{ vm.user.image }}" alt="profile.user.username">
 <h2>{{ profile.user.username }}</h2>
 <a href="mailto:{{ profile.user.email }}" ng-if="profile.user.email">{{ profile.user.email }}</a>
 <p>Facebook Id: <strong>{{ profile.user.facebookId }}</strong></p>
 
 <button ng-click="profile.logout()">Logout</button>
+
+<h2>Hello {{ vm.user.username }}</h2>
+
+<ul>
+  <li ng-repeat="file in vm.files">
+    <h2>{{ file.filename }}</h2>
+    <p><a ui-sref="filesShow({ id: file._id })">Show more</a></p>
+    <audio controls><source ng-src="{{ file.audio }}" type="audio/wav"></audio>
+    <!-- <button ng-click="vm.deleteFile(file)">Delete</button> -->
+  </li>
+</ul>

@@ -10,15 +10,12 @@ function filesNewCtrl(File, $state, filepickerService, $scope, $http, currentUse
   vm.file = {};
   vm.submit = textFileSubmit;
 
-  // vm.file.createdBy = currentUserService.currentUser.id;
-
   vm.pickFile = () => {
     filepickerService.pick(
       {mimetype: 'text/*'},
       (Blob) => {
         if (Blob && Blob.url) {
           vm.file.content = Blob.url;
-
           $http
             .get(Blob.url)
             .then(response => {
@@ -31,6 +28,7 @@ function filesNewCtrl(File, $state, filepickerService, $scope, $http, currentUse
   };
 
   function textFileSubmit() {
+    vm.file.createdBy = currentUserService.currentUser.id;
     File
       .save(vm.file)
       .$promise

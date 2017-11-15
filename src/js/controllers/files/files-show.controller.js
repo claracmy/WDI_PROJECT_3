@@ -6,7 +6,6 @@ filesShowCtrl.$inject = ['File', '$stateParams', '$state'];
 
 function filesShowCtrl(File, $stateParams, $state) {
   const vm = this;
-  console.log('this is vm', vm);
   vm.boolean = true;
 
   File
@@ -14,19 +13,16 @@ function filesShowCtrl(File, $stateParams, $state) {
     .$promise
     .then((file) => {
       vm.file = file;
-      console.log('this is vm.file', vm.file);
     });
 
   vm.editTitle = editTitle;
   vm.showEditForm = showEditForm;
 
   vm.submitComment = function() {
-    console.log('submit comment function is fired');
     File
       .addComment({ id: vm.file._id }, vm.comment)
       .$promise
       .then(() => {
-        console.log('this is vm in the submit function', vm);
         vm.comment = {};
         vm.file = File.get({ id: $stateParams.id });
       });
@@ -38,8 +34,19 @@ function filesShowCtrl(File, $stateParams, $state) {
       .$promise
       .then(() => {
         console.log('deleted');
+        getFile();
       });
   };
+
+  function getFile() {
+    File
+      .get({ id: $stateParams.id })
+      .$promise
+      .then(data => {
+        vm.comment = {};
+        vm.file.comments = data.comments;
+      });
+  }
 
   function showEditForm() {
     console.log('boolean before edit', vm.boolean);

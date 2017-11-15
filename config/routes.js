@@ -17,6 +17,8 @@ router.route('/users/:id')
   .get(users.show)
   .put(users.update)
   .delete(users.delete);
+router.route('/users/:id/files')
+  .get(users.showFiles);
 
 router.route('/oauth/facebook')
   .post(oauth.facebook);

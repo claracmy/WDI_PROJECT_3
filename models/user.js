@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema({
   username: { type: String, unique: true, required: true },
   email: { type: String, unique: true, required: true },
   passwordHash: { type: String, required: true }
+  // files: [ { type: mongoose.Schema.ObjectId, ref: 'File' } ]
 });
 
 userSchema
@@ -76,3 +77,5 @@ function validateEmail(email) {
 function validatePassword(password){
   return bcrypt.compareSync(password, this.passwordHash);
 }
+
+module.exports = mongoose.model('User', userSchema);

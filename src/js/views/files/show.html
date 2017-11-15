@@ -10,14 +10,12 @@
   </form>
 
   <div ng-if="main.user.id === vm.file.createdBy" ng-click="vm.showEditForm()">
-    Edit title
+    <a href="#">Edit title</a>
   </div>
 
   <audio controls ng-src="{{ vm.file.audio }}"></audio>
   <p><a ui-sref="filesIndex">Back to index</a></p>
-
-  <a href="/files/:id/edit" ui-sref="filesEdit({id: vm.file._id })">edit</a>
-
+<!-- ng-if="main.user.id === vm.file.createdBy" -->
     <button ng-click="vm.delete(vm.file)">Delete</button>
 
     <form ng-submit="vm.submitComment()">
