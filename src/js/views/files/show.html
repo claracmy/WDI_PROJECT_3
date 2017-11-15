@@ -16,9 +16,7 @@
   <audio controls ng-src="{{ vm.file.audio }}"></audio>
   <p><a ui-sref="filesIndex">Back to index</a></p>
 
-  <a href="/files/:id/edit" ui-sref="filesEdit({id: vm.file._id })">edit</a>
-
-    <button ng-click="vm.delete(vm.file)">Delete</button>
+  <button ng-click="vm.delete(vm.file)" ng-if="main.user.id === vm.file.createdBy">Delete</button>
 
     <form ng-submit="vm.submitComment()">
       <h3>Leave your comment</h3>
@@ -37,4 +35,4 @@
 
   <button ng-click="vm.like()">Like</button>
   <!-- ng-if="vm.file.like.likedBy !== main.user.id" -->
-  <!-- <button ng-click="vm.unlike(vm.file.likes)" ng-if="vm.file.like.likedBy === main.user.id">Unlike</button> -->
+  <button ng-click="vm.unlike(vm.file.likes)" ng-if="">Unlike</button>

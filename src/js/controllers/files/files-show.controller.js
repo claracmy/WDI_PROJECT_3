@@ -8,6 +8,8 @@ function filesShowCtrl(File, $stateParams, $state) {
   const vm = this;
   vm.boolean = true;
   vm.file = File.get($stateParams);
+  vm.editTitle = editTitle;
+  vm.showEditForm = showEditForm;
 
   File
     .get({ id: $stateParams.id })
@@ -61,14 +63,26 @@ function filesShowCtrl(File, $stateParams, $state) {
       .$promise
       .then(() => {
         console.log('deleted');
+        getFile();
       });
   };
 
-  vm.showEditForm = () => {
-    vm.boolean = !vm.boolean;
-  };
+  function getFile() {
+    File
+      .get({ id: $stateParams.id })
+      .$promise
+      .then(data => {
+        vm.comment = {};
+        vm.file.comments = data.comments;
+      });
+  }
 
-  vm.editTitle = () => {
+  function showEditForm() {
+    console.log('boolean before edit', vm.boolean);
+    vm.boolean = !vm.boolean;
+  }
+
+  function editTitle() {
     File
       .update({ id: $stateParams.id }, vm.file)
       .$promise
@@ -76,5 +90,5 @@ function filesShowCtrl(File, $stateParams, $state) {
         vm.file = File.get({ id: $stateParams.id });
         vm.boolean = !vm.boolean;
       });
-  };
+  }
 }

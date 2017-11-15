@@ -1,10 +1,9 @@
-<h1>Files Index</h1>
+<h1>Homepage</h1>
 
 <ul>
   <li ng-repeat="file in vm.files track by $index">
-    <h2><a ui-sref="filesShow({ id: file._id })">{{ file.filename }}</a></h2>
-    <p>Text: {{ file.text }}</p>
+    <h2>{{ file.filename }}</h2>
     <audio controls><source ng-src="{{ file.audio }}" type="audio/wav"></audio>
-
+    <p><a ui-sref="filesShow({ id: file._id })">Show more</a></p>
   </li>
 </ul>
