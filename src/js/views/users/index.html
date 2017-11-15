@@ -1,12 +1,19 @@
 <h1>Usersssss</h1>
 
-<div class="row">
-  <div class="col-md-4" ng-repeat="user in vm.users">
-    <div class="card" style="width: 20rem;">
-      <div class="card-body">
-        <h4 class="card-title">{{ user.username }}</h4>
-        <p class="card-text">{{ user.email }}</p>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+<div class="container">
+  <!-- Content here -->
+
+  <div class="row">
+    <div class="col-md-4" ng-repeat="user in vm.users">
+      <div class="card" style="width: 20rem;">
+        <div class="card-body">
+          <h4 class="card-title">{{ user.username }}</h4>
+          <p class="card-text">{{ user.email }}</p>
+        </div>
       </div>
     </div>
   </div>
+
 </div>

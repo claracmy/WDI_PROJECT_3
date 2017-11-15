@@ -28,10 +28,10 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       templateUrl: 'js/views/authentications/login.html',
       controller: 'loginCtrl as vm'
     })
-    .state('usersShow', {
-      url: '/users/:id',
-      templateUrl: 'js/views/users/show.html'
-    })
+    // .state('usersShow', {
+    //   url: '/users/:id',
+    //   templateUrl: 'js/views/users/show.html'
+    // })
     .state('usersIndex', {
       url: '/users',
       templateUrl: 'js/views/users/index.html',
