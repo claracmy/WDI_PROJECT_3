@@ -9,12 +9,12 @@ function filesEditCtrl(File, $stateParams, $state) {
   vm.title = 'Edit File';
   vm.file = File.get($stateParams);
 
-  vm.submit = file => {
+  vm.submit = () => {
     File
-      .update({ id: file.id }, file)
+      .update({ id: $stateParams.id }, vm.file)
       .$promise
       .then(() => {
-        $state.go('filesShow', { id: file.id });
+        $state.go('filesShow', { id: $stateParams.id });
       });
   };
 }

@@ -2,7 +2,7 @@ angular
   .module('whatsOn')
   .controller('filesNewCtrl', filesNewCtrl);
 
-filesNewCtrl.$inject = ['File', '$state', 'filepickerService', '$scope', '$http','currentUserService'];
+filesNewCtrl.$inject = ['File', '$state', 'filepickerService', '$scope', '$http', 'currentUserService'];
 
 function filesNewCtrl(File, $state, filepickerService, $scope, $http, currentUserService) {
   const vm = this;

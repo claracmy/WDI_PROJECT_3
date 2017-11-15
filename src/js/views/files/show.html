@@ -10,13 +10,13 @@
   </form>
 
   <div ng-if="main.user.id === vm.file.createdBy" ng-click="vm.showEditForm()">
-    <a href="#">Edit title</a>
+    Edit title
   </div>
 
   <audio controls ng-src="{{ vm.file.audio }}"></audio>
   <p><a ui-sref="filesIndex">Back to index</a></p>
 
-    <button ng-click="vm.delete(vm.file)" ng-if="main.user.id === vm.file.createdBy">Delete</button>
+  <button ng-click="vm.delete(vm.file)" ng-if="main.user.id === vm.file.createdBy">Delete</button>
 
     <form ng-submit="vm.submitComment()">
       <h3>Leave your comment</h3>
@@ -32,3 +32,7 @@
       <p>Created by {{ comment.createdBy.username }}</p>
       <button ng-click="vm.deleteComment(comment)" ng-if="comment.createdBy.id === main.user.id">Delete</button>
     </ul>
+
+  <button ng-click="vm.like()">Like</button>
+  <!-- ng-if="vm.file.like.likedBy !== main.user.id" -->
+  <button ng-click="vm.unlike(vm.file.likes)" ng-if="">Unlike</button>

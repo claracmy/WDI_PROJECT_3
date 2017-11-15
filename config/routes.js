@@ -3,6 +3,7 @@ const authentications = require('../controllers/authentications');
 const oauth           = require('../controllers/oauth');
 const users           = require('../controllers/users');
 const files           = require('../controllers/files');
+const likes           = require('../controllers/likes');
 const secureRoute     = require('../lib/secureRoute');
 
 router.route('/register')
@@ -31,9 +32,13 @@ router.route('/files/:id')
   .put(files.update)
   .delete(files.delete);
 
+router.route('/files/:id/likes')
+  .post(likes.new);
+router.route('/files/:id/likes/:likeId')
+  .delete(likes.delete);
+
 router.route('/files/:id/comments')
   .post(files.createComment);
-
 router.route('/files/:id/comments/:commentId')
   .delete(files.deleteComment);
 
