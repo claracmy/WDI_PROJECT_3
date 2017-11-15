@@ -11,9 +11,6 @@ function filesIndex (req, res, next){
 }
 
 function filesNew (req, res, next){
-  console.log('this this created by: ', req.body.createdBy);
-
-
   Watson(req)
     .then(result => {
       return File.create({
@@ -34,14 +31,12 @@ function filesShow (req, res, next){
     .exec()
     .then(file => {
       if (!file) return res.status(200).json({ message: 'file not found'});
-      console.log(file);
       return res.status(200).json(file);
     })
     .catch(next);
 }
 
 function filesUpdate(req, res, next){
-  console.log(req.body);
   File
     .findByIdAndUpdate(req.params.id, req.body)
     .exec()

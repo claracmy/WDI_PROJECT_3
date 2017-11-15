@@ -13,10 +13,6 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
   $locationProvider.html5Mode(true);
 
   $stateProvider
-    // .state('home', {
-    //   url: '/',
-    //   templateUrl: 'js/views/statics/home.html'
-    // })
     .state('register', {
       url: '/register',
       templateUrl: 'js/views/authentications/register.html',
@@ -40,6 +36,11 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/users',
       templateUrl: 'js/views/users/index.html',
       controller: 'usersIndexCtrl as vm'
+    })
+    .state('usersShow', {
+      url: '/users/:id',
+      templateUrl: '/js/views/users/show.html',
+      controller: 'usersShowCtrl as vm'
     })
     .state('filesIndex', {
       url: '/',
