@@ -13,10 +13,10 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
   $locationProvider.html5Mode(true);
 
   $stateProvider
-    .state('home', {
-      url: '/',
-      templateUrl: 'js/views/statics/home.html'
-    })
+    // .state('home', {
+    //   url: '/',
+    //   templateUrl: 'js/views/statics/home.html'
+    // })
     .state('register', {
       url: '/register',
       templateUrl: 'js/views/authentications/register.html',
@@ -26,6 +26,15 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/login',
       templateUrl: 'js/views/authentications/login.html',
       controller: 'loginCtrl as vm'
+    })
+    .state('oauth', {
+      url:'/oauth/facebook',
+      templateUrl: 'js/views/authentications/login.html',
+      controller: 'loginCtrl as vm'
+    })
+    .state('usersShow', {
+      url: '/users/:id',
+      templateUrl: 'js/views/users/show.html'
     })
     .state('usersIndex', {
       url: '/users',
@@ -38,13 +47,13 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       controller: 'usersShowCtrl as vm'
     })
     .state('filesIndex', {
-      url: '/files',
+      url: '/',
       templateUrl: 'js/views/files/index.html',
       controller: 'filesIndexCtrl as vm'
     })
     .state('filesNew', {
       url: '/files/new',
-      templateUrl: '/js/views/files/form.html',
+      templateUrl: 'js/views/files/form.html',
       controller: 'filesNewCtrl as vm'
     })
     .state('filesShow', {
@@ -52,13 +61,13 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       templateUrl: 'js/views/files/show.html',
       controller: 'filesShowCtrl as vm'
     })
-    .state('filesEdit', {
-      url: '/files/:id/edit',
-      templateUrl: 'js/views/files/form.html',
-      controller: 'filesEditCtrl as vm'
-    })
     .state('comments', {
       url: '/files/:id/comments',
+      templateUrl: 'js/views/files/show.html',
+      controller: 'filesShowCtrl as vm'
+    })
+    .state('commentsDelete', {
+      url: '/files/:id/comments/:commentId',
       templateUrl: 'js/views/files/show.html',
       controller: 'filesShowCtrl as vm'
     });
