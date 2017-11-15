@@ -15,8 +15,8 @@
 
   <audio controls ng-src="{{ vm.file.audio }}"></audio>
   <p><a ui-sref="filesIndex">Back to index</a></p>
-<!-- ng-if="main.user.id === vm.file.createdBy" -->
-    <button ng-click="vm.delete(vm.file)">Delete</button>
+
+    <button ng-click="vm.delete(vm.file)" ng-if="main.user.id === vm.file.createdBy">Delete</button>
 
     <form ng-submit="vm.submitComment()">
       <h3>Leave your comment</h3>

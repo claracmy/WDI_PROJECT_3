@@ -7,6 +7,8 @@ filesShowCtrl.$inject = ['File', '$stateParams', '$state'];
 function filesShowCtrl(File, $stateParams, $state) {
   const vm = this;
   vm.boolean = true;
+  vm.editTitle = editTitle;
+  vm.showEditForm = showEditForm;
 
   File
     .get({ id: $stateParams.id })
@@ -14,9 +16,6 @@ function filesShowCtrl(File, $stateParams, $state) {
     .then((file) => {
       vm.file = file;
     });
-
-  vm.editTitle = editTitle;
-  vm.showEditForm = showEditForm;
 
   vm.submitComment = function() {
     File
