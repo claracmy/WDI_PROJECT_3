@@ -3,9 +3,11 @@ const bcrypt    = require('bcrypt');
 const validator = require('validator');
 
 const userSchema = new mongoose.Schema({
-  username: { type: String, unique: true, required: true },
+  username: { type: String, unique: true },
   email: { type: String, unique: true, required: true },
-  passwordHash: { type: String, required: true }
+  passwordHash: { type: String },
+  facebookId: { type: Number },
+  image: { type: String, trim: true }
 });
 
 userSchema
@@ -40,8 +42,6 @@ userSchema.set('toJSON', {
   }
 });
 
-module.exports = mongoose.model('User', userSchema);
-
 function setPassword(value){
   this._password    = value;
   this.passwordHash = bcrypt.hashSync(value, bcrypt.genSaltSync(8));
@@ -53,7 +53,7 @@ function setPasswordConfirmation(passwordConfirmation) {
 
 function validatePasswordHash() {
   if (this.isNew) {
-    if (!this._password) {
+    if (!this._password && !this._facebookId) {
       return this.invalidate('password', 'A password is required.');
     }
 
@@ -76,3 +76,7 @@ function validateEmail(email) {
 function validatePassword(password){
   return bcrypt.compareSync(password, this.passwordHash);
 }
+
+
+
+module.exports = mongoose.model('User', userSchema);

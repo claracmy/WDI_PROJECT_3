@@ -32,16 +32,6 @@ function filesShowCtrl(File, $stateParams, $state) {
       });
   };
 
-<<<<<<< HEAD
-  // vm.deleteComment = function(comment) {
-  //   File
-  //     .deleteComment({id: vm.file._id, commentId: comment._id})
-  //     .$promise
-  //     .then(() => {
-  //       console.log('deleted');
-  //     });
-  // };
-=======
 
   vm.deleteComment = function(comment) {
     File
@@ -51,7 +41,7 @@ function filesShowCtrl(File, $stateParams, $state) {
         console.log('deleted');
       });
   };
->>>>>>> 377cdde49f955474471dde6bae25ff34170af1f9
+
 
   function showEditForm() {
     console.log('boolean before edit', vm.boolean);

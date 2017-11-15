@@ -32,7 +32,10 @@
             <a class="nav-link" ui-sref="login">Login</a>
           </li>
           <li class="nav-item" ng-if="main.user">
-            <a class="nav-link" href="#">Hello {{ main.user.username }}</a>
+            <a class="nav-link" ui-sref="usersEdit({ id: main.user.id })"><img ng-src="{{ main.user.image }}"></a>
+          </li>
+          <li class="nav-item" ng-if="main.user">
+            <a class="nav-link" ui-sref="usersEdit({ id: main.user.id })">Hello {{ main.user.username }}</a>
           </li>
           <li class="nav-item" ng-if="main.user">
             <a class="nav-link" href="#" ng-click="main.logout()">Logout</a>

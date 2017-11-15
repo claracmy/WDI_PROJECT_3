@@ -27,14 +27,15 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       templateUrl: 'js/views/authentications/login.html',
       controller: 'loginCtrl as vm'
     })
-    .state('oauth', {
-      url:'/oauth/facebook',
-      templateUrl: 'js/views/authentications/login.html',
-      controller: 'loginCtrl as vm'
-    })
     .state('usersShow', {
       url: '/users/:id',
-      templateUrl: 'js/views/users/show.html'
+      templateUrl: 'js/views/users/show.html',
+      controller: 'userShowCtrl as vm'
+    })
+    .state('usersEdit', {
+      url: '/users/:id',
+      templateUrl: 'js/views/users/edit.html',
+      controller: 'userEditCtrl as vm'
     })
     .state('usersIndex', {
       url: '/users',
