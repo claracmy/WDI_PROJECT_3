@@ -9,8 +9,7 @@ function addLike(req, res, next) {
     .exec()
     .then(file => {
       req.body.likedBy = req.user.userId;
-
-    }
+    });
 }
 
 function removeLike(req, res, next) {
