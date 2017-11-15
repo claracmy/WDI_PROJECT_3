@@ -28,7 +28,7 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       controller: 'loginCtrl as vm'
     })
     .state('oauth', {
-      url:'/oauth/facebook',
+      url: '/oauth/facebook',
       templateUrl: 'js/views/authentications/login.html',
       controller: 'loginCtrl as vm'
     })
@@ -60,6 +60,11 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/files/:id/edit',
       templateUrl: 'js/views/files/form.html',
       controller: 'filesEditCtrl as vm'
+    })
+    .state('likes', {
+      url: '/files/:id/likes',
+      templateUrl: 'js/views/files/index.html',
+      controller: 'filesIndexCtrl as vm'
     })
     .state('comments', {
       url: '/files/:id/comments',

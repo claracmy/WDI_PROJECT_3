@@ -17,44 +17,44 @@ function facebook(req, res, next) {
     },
     json: true
   })
-  .then((token) => {
-    return rp({
-      method: 'GET',
-      url: oauth.facebook.profileURL,
-      qs: token,
-      json: true,
-      headers: {
-        'User-Agent': 'Request-Promise'
-      }
-    });
-  })
-  .then((profile) => {
-    return User.findOne({ $or: [{ email: profile.email }, { facebookId: profile.id }] })
-      .then((user) => {
-        if(!user) {
-          user = new User({
-            username: profile.login,
-            email: profile.email
-          });
+    .then((token) => {
+      return rp({
+        method: 'GET',
+        url: oauth.facebook.profileURL,
+        qs: token,
+        json: true,
+        headers: {
+          'User-Agent': 'Request-Promise'
         }
-
-        user.facebookId = profile.id;
-        user.image = profile.avatar_url;
-        return user.save();
       });
-  })
-  .then(user => {
-    console.log(user);
-    const payload = { userId: user.id };
-    const token = jwt.sign(payload, secret, { expiresIn: '1hr' });
+    })
+    .then((profile) => {
+      return User.findOne({ $or: [{ email: profile.email }, { facebookId: profile.id }] })
+        .then((user) => {
+          if(!user) {
+            user = new User({
+              username: profile.login,
+              email: profile.email
+            });
+          }
 
-    return res.json({
-      token,
-      user,
-      message: `Welcome back ${user.username}`
-    });
-  })
-  .catch(next);
+          user.facebookId = profile.id;
+          user.image = profile.avatar_url;
+          return user.save();
+        });
+    })
+    .then(user => {
+      console.log(user);
+      const payload = { userId: user.id };
+      const token = jwt.sign(payload, secret, { expiresIn: '1hr' });
+
+      return res.json({
+        token,
+        user,
+        message: `Welcome back ${user.username}`
+      });
+    })
+    .catch(next);
 }
 
 module.exports = {
