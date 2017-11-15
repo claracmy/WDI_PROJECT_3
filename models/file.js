@@ -8,7 +8,7 @@ const commentSchema = new mongoose.Schema({
 });
 
 const likeSchema = new mongoose.Schema({
-  likedBy: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
+  likedBy: { type: mongoose.Schema.ObjectId, ref: 'User' }
 });
 
 const fileSchema = new mongoose.Schema({

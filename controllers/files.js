@@ -20,7 +20,6 @@ function filesNew (req, res, next){
         audio: result
       });
     })
-    .then((file) => console.log(file))
     .catch(next);
 }
 

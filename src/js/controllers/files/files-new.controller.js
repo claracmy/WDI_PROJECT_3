@@ -2,15 +2,21 @@ angular
   .module('whatsOn')
   .controller('filesNewCtrl', filesNewCtrl);
 
-filesNewCtrl.$inject = ['File', '$state', 'filepickerService', '$scope', '$http','currentUserService'];
+filesNewCtrl.$inject = ['File', '$state', 'filepickerService', '$scope', '$http'];
 
-function filesNewCtrl(File, $state, filepickerService, $scope, $http, currentUserService) {
+function filesNewCtrl(File, $state, filepickerService, $scope, $http) {
   const vm = this;
   vm.title = 'Upload File';
   vm.file = {};
-  vm.submit = textFileSubmit;
 
-  // vm.file.createdBy = currentUserService.currentUser.id;
+  vm.submit = () => {
+    File
+      .save(vm.file)
+      .$promise
+      .then(() => {
+        $state.go('filesIndex');
+      });
+  };
 
   vm.pickFile = () => {
     filepickerService.pick(
@@ -29,13 +35,4 @@ function filesNewCtrl(File, $state, filepickerService, $scope, $http, currentUse
       }
     );
   };
-
-  function textFileSubmit() {
-    File
-      .save(vm.file)
-      .$promise
-      .then(() => {
-        $state.go('filesIndex');
-      });
-  }
 }
