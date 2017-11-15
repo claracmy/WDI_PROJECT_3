@@ -1,6 +1,6 @@
 const File = require('../models/file');
+// const User = require('../models/user');
 const Watson = require('../lib/watson');
-
 
 function filesIndex (req, res, next){
   File
@@ -20,7 +20,9 @@ function filesNew (req, res, next){
         audio: result
       });
     })
-    .then((file) => console.log(file))
+    .then((file) => {
+      return res.status(201).json(file);
+    })
     .catch(next);
 }
 
@@ -81,8 +83,8 @@ function commentsDelete(req, res, next){
       if (!file) return res.notFound();
       const comment = file.comments.id(req.params.commentId);
       comment.remove();
-
-      return file.save();
+      file.save();
+      return res.status(200).json({message: 'comment was successfully deleted'});
     })
     .catch(next);
 }

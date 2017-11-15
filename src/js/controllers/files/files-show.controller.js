@@ -6,27 +6,52 @@ filesShowCtrl.$inject = ['File', '$stateParams', '$state'];
 
 function filesShowCtrl(File, $stateParams, $state) {
   const vm = this;
-  console.log('this is vm', vm);
   vm.boolean = true;
+  vm.file = File.get($stateParams);
+  vm.editTitle = editTitle;
+  vm.showEditForm = showEditForm;
 
   File
     .get({ id: $stateParams.id })
     .$promise
     .then((file) => {
       vm.file = file;
-      console.log('this is vm.file', vm.file);
     });
 
-  vm.editTitle = editTitle;
-  vm.showEditForm = showEditForm;
+  vm.delete = file => {
+    File
+      .remove({ id: file._id })
+      .$promise
+      .then(() => {
+        $state.go('filesIndex');
+      });
+  };
+
+  vm.like = function() {
+    vm.file.likes = {};
+    File
+      .addLike({ id: vm.file._id }, vm.file.likes)
+      .$promise
+      .then(() => {
+        vm.file = File.get({ id: $stateParams.id });
+      });
+  };
+
+  vm.unlike = function(like) {
+    console.log(like);
+    File
+      .removeLike({ id: vm.file._id, likeId: like._id })
+      .$promise
+      .then(() => {
+        console.log('unliked');
+      });
+  };
 
   vm.submitComment = function() {
-    console.log('submit comment function is fired');
     File
       .addComment({ id: vm.file._id }, vm.comment)
       .$promise
       .then(() => {
-        console.log('this is vm in the submit function', vm);
         vm.comment = {};
         vm.file = File.get({ id: $stateParams.id });
       });
@@ -38,33 +63,32 @@ function filesShowCtrl(File, $stateParams, $state) {
       .$promise
       .then(() => {
         console.log('deleted');
+        getFile();
       });
   };
+
+  function getFile() {
+    File
+      .get({ id: $stateParams.id })
+      .$promise
+      .then(data => {
+        vm.comment = {};
+        vm.file.comments = data.comments;
+      });
+  }
 
   function showEditForm() {
     console.log('boolean before edit', vm.boolean);
     vm.boolean = !vm.boolean;
-    console.log('boolean before edit', vm.boolean);
   }
 
   function editTitle() {
-    console.log('edittitle function fired');
     File
       .update({ id: $stateParams.id }, vm.file)
       .$promise
       .then(() => {
-        console.log('this is the new title', vm.file);
         vm.file = File.get({ id: $stateParams.id });
         vm.boolean = !vm.boolean;
       });
   }
-
-  vm.delete = file => {
-    File
-      .remove({ id: file._id })
-      .$promise
-      .then(() => {
-        $state.go('filesIndex');
-      });
-  };
 }

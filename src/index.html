@@ -20,16 +20,20 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li ng-if="main.user" class="nav-item">
-            <a class="nav-link" ui-sref="usersIndex">Users</a>
+          <li class="nav-item" ng-if="main.user">
+            <a class="nav-link" ui-sref="filesNew">Add a joke</a>
           </li>
         </ul>
+
         <ul class="navbar-nav ml-auto">
           <li class="nav-item" ng-if="!main.user">
             <a class="nav-link" ui-sref="register">Register</a>
           </li>
           <li class="nav-item" ng-if="!main.user">
             <a class="nav-link" ui-sref="login">Login</a>
+          </li>
+          <li class="nav-item" ng-if="main.user">
+            <a class="nav-link" ui-sref="usersShow({ id: main.user.id })">Your profile</a>
           </li>
           <li class="nav-item" ng-if="main.user">
             <a class="nav-link" href="#">Hello {{ main.user.username }}</a>

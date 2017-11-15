@@ -10,6 +10,8 @@ function User(
   $resource,
   API){
   return $resource(`${API}/users/:id`, { id: '@_id'}, {
-    'update': { method: 'PUT' }
+    'update': { method: 'PUT' },
+    'getCreatedFiles': { url: `${API}/users/:id/files`, method: 'GET', isArray: true  },
+    'deleteFile': { url: `${API}/users/:id/:fileId`, id: '@_id', fileId: '@_id', method: 'DELETE' }
   });
 }

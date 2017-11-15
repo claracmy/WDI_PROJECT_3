@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const File = require('../models/file');
 
 function usersIndex(req, res) {
   User
@@ -11,6 +12,7 @@ function usersIndex(req, res) {
 function usersShow(req, res) {
   User
     .findById(req.params.id)
+    .populate('files')
     .exec()
     .then(user => {
       if (!user) return res.status(404).json({ message: 'User not found.' });
@@ -41,9 +43,18 @@ function usersDelete(req, res) {
     .catch(() => res.status(500).json({ message: 'Something went wrong.' }));
 }
 
+function showFiles(req, res) {
+  File
+    .find({ createdBy: req.params.id })
+    .exec()
+    .then(files => res.status(200).json(files))
+    .catch(() => res.status(500).json({ message: 'Something went wrong.' }));
+}
+
 module.exports = {
   index: usersIndex,
   show: usersShow,
   update: usersUpdate,
-  delete: usersDelete
+  delete: usersDelete,
+  showFiles: showFiles
 };

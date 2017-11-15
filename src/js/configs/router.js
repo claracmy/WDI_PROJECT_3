@@ -28,10 +28,6 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       templateUrl: 'js/views/authentications/login.html',
       controller: 'loginCtrl as vm'
     })
-    // .state('usersShow', {
-    //   url: '/users/:id',
-    //   templateUrl: 'js/views/users/show.html'
-    // })
     .state('usersIndex', {
       url: '/users',
       templateUrl: 'js/views/users/index.html',
@@ -54,6 +50,21 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('filesShow', {
       url: '/files/:id',
+      templateUrl: 'js/views/files/show.html',
+      controller: 'filesShowCtrl as vm'
+    })
+    .state('filesEdit', {
+      url: '/files/:id/edit',
+      templateUrl: 'js/views/files/form.html',
+      controller: 'filesEditCtrl as vm'
+    })
+    .state('like', {
+      url: '/files/:id/likes',
+      templateUrl: 'js/views/files/show.html',
+      controller: 'filesShowCtrl as vm'
+    })
+    .state('unlike', {
+      url: '/files/:id/likes/:likeId',
       templateUrl: 'js/views/files/show.html',
       controller: 'filesShowCtrl as vm'
     })
