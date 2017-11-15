@@ -64,21 +64,13 @@ function filesDelete(req, res, next){
 }
 
 function commentsCreate(req, res, next) {
-// console.log(req.body);
 
   File
     .findById(req.params.id)
     .exec()
     .then(file => {
-// console.log('this is req.user.userId', req.user.userId);
-console.log('this is req.params.id', req.params.id); //:5a0af615d65d159eabe73d8d <= id of the file as it is the same as vm.file._id on the front-end
-console.log('this is req.user', req.user); //:undefined
-console.log('this is req.params', req.params);//: { id: 5a0af615d65d159eabe73d8d}
-// req.user.userId should be the vm.file.createdBy
       if(!file) return res.notFound();
-      req.body.createdBy = req.user.userId; //this is the original line
-      // req.body.createdBy = req.params.id;
-console.log('this is req.body', req.body);
+      req.body.createdBy = req.user.userId;
       file.comments.push(req.body);
       file.save();
       return res.status(200).json({ file });

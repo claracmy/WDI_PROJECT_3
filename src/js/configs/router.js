@@ -28,7 +28,7 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       controller: 'loginCtrl as vm'
     })
     .state('oauth', {
-      url:'/oauth/facebook',
+      url: '/oauth/facebook',
       templateUrl: 'js/views/authentications/login.html',
       controller: 'loginCtrl as vm'
     })

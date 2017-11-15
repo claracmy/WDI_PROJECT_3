@@ -10,7 +10,7 @@ function filesNewCtrl(File, $state, filepickerService, $scope, $http, currentUse
   vm.file = {};
   vm.submit = textFileSubmit;
 
-  vm.file.createdBy = currentUserService.currentUser.id;
+  // vm.file.createdBy = currentUserService.currentUser.id;
 
   vm.pickFile = () => {
     filepickerService.pick(
