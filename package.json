@@ -8,6 +8,9 @@
     "postinstall": "bower install && gulp deploy",
     "test": "istanbul cover node_modules/.bin/_mocha"
   },
+  "engines": {
+    "node": "8.4.0"
+  },
   "lint-staged": {
     "**/*.{js,json,css}": ["prettier-eslint --single-quote --write", "git add"]
   },
