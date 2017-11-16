@@ -1,6 +1,10 @@
 @import "./partials/grids";
 @import "./partials/typo";
 @import "./partials/nav-bar";
+@import "variables";
+@import "partials/assets";
+@import "partials/buttons";
+@import "pages/index-files";
 // homepage
 
 // typography
@@ -71,19 +75,6 @@ a:hover {
 .index-jokes {
   background-color: rgba(255,255,255,0.2);
   padding: 30px 0;
-}
-
-#scrollArea {
-  height: 850px;
-  overflow: auto;
-}
-
-//message display
-
-.my-message {
-  padding: 15px;
-  border-radius: 0;
-  margin: 0;
 }
 
 .profile {

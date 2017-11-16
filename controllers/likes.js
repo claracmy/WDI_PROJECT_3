@@ -1,8 +1,7 @@
 const File = require('../models/file');
 
 function addLike(req, res, next) {
-  File
-    .findById(req.params.id)
+  File.findById(req.params.id)
     .exec()
     .then(file => {
       file.likes.addToSet(req.user.userId);

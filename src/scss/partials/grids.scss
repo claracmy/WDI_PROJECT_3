@@ -1,3 +1,29 @@
+@import "../scss/variables/typo";
+@import "../scss/variables/font-size";
+@import "../scss/variables/color";
+
+* {
+  box-sizing: border-box;
+  text-align: center;
+}
+
+h1 {
+  padding: 10px 0 20px 0;
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+}
+
+p {
+  text-align: center;
+}
+
 #your-jokes {
   margin-bottom: 30px;
 }
@@ -29,4 +55,36 @@
 #scrollArea {
   height: 850px;
   overflow: auto;
+}
+
+.my-message {
+ padding: 15px;
+ border-radius: 0;
+ margin: 0;
+}
+
+///Profile Page
+.profile-page {
+  margin-top: 100px;
+  border-radius: 5px;
+}
+
+.input-space {
+  width: 500px;
+}
+
+.text-username {
+  padding: 10px;
+}
+
+.navbar-nav {
+  padding-top: 20px;
+}
+
+.navbar-brand {
+  padding-top: 20px;
+}
+
+.login-page, .register-page {
+  height: 850px;
 }

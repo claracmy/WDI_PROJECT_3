@@ -2,7 +2,14 @@
 @import "../scss/variables/font-size";
 @import "../scss/variables/color";
 
+* {
+  list-style: none;
+  text-decoration: none;
+}
 
+body {
+  background-color: lighten($color-primary,20%);
+}
 
 h1 {
   font-family: $h1-font;
@@ -25,6 +32,9 @@ h3 {
 .fa {
   color: $color-secondary;
   font-size: $h2-font-size;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .index {
@@ -33,4 +43,43 @@ h3 {
 
 .index-jokes {
   background-color: rgba(255, 255, 255, 0.2);
+}
+
+.text-username {
+  color: #007849;
+}
+
+.profile-page {
+  border: solid 1px lighten($color-primary,20%);
+}
+
+nav {
+ background-color: lighten($color-primary,20%);
+ a {
+   color: $color-text;
+ }
+}
+
+.navbar-brand {
+  font-size: $h2-font-size;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+//register
+.login-page, .register-page {
+  background-color: lighten($color-primary,20%);
+  height: 850px;
+}
+
+.form-group {
+  margin: 20px 0;
+}
+
+#facebook{
+  color:white;
+  font-size: 16px;
+  margin-right: 5px;
 }

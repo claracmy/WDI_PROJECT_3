@@ -19,12 +19,10 @@ function loginCtrl(
   vm.authenticate = authenticate;
 
   function authenticate(provider) {
-    $auth
-      .authenticate(provider)
-      .then(res => {
-        currentUserService.getUser();
-        $state.go('usersShow', { id: res.data.user.id });
-      });
+    $auth.authenticate(provider).then(res => {
+      currentUserService.getUser();
+      $state.go('usersShow', { id: res.data.user.id });
+    });
   }
 
   function login() {

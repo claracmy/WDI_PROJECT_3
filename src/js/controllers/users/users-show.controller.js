@@ -1,17 +1,7 @@
-angular
-  .module('whatsOn')
-  .controller('usersShowCtrl', usersShowCtrl);
+angular.module('whatsOn').controller('usersShowCtrl', usersShowCtrl);
 
-usersShowCtrl.$inject = [
-  'User',
-  'File',
-  '$stateParams'
-];
-function usersShowCtrl(
-  User,
-  File,
-  $stateParams
-) {
+usersShowCtrl.$inject = ['User', 'File', '$stateParams'];
+function usersShowCtrl(User, File, $stateParams) {
   const vm = this;
   User
     .getCreatedFiles({ id: $stateParams.id })

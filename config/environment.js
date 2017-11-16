@@ -5,5 +5,6 @@ module.exports = {
     production: process.env.MONGODB_URI,
     development: 'mongodb://localhost/wdip3-development',
     test: 'mongodb://localhost/wdip3-test'
-  }
+  },
+  env: process.env.NODE_ENV || 'development'
 };

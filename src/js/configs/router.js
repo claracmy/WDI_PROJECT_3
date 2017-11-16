@@ -1,13 +1,6 @@
-angular
-  .module('whatsOn')
-  .config(Router);
+angular.module('whatsOn').config(Router);
 
-
-Router.$inject = [
-  '$stateProvider',
-  '$urlRouterProvider',
-  '$locationProvider'
-];
+Router.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 
 function Router($stateProvider, $urlRouterProvider, $locationProvider) {
   $locationProvider.html5Mode(true);
@@ -37,6 +30,11 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/users/:id',
       templateUrl: '/js/views/users/show.html',
       controller: 'usersShowCtrl as vm'
+    })
+    .state('usersEdit', {
+      url: '/users/:id',
+      templateUrl: 'js/views/users/edit.html',
+      controller: 'userEditCtrl as vm'
     })
     .state('filesIndex', {
       url: '/',
