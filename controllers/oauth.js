@@ -29,25 +29,25 @@ function facebook(req, res, next) {
     });
   })
   .then((profile) => {
+    console.log(profile);
     req.profile = profile;
     return User.findOne({ $or: [{ email: profile.email }, { facebookId: profile.id }] })
   })
   .then(user => {
     if(!user) {
       user = new User({
-        username: req.profile.login,
+        username: req.profile.first_name,
         email: req.profile.email
       });
     }
     user.facebookId = req.profile.id;
     user.image = req.profile.picture && req.profile.picture.data && req.profile.picture.data.url;
+    console.log(user);
     return user.save();
   })
   .then(user => {
-
     const payload = { userId: user.id };
     const token = jwt.sign(payload, secret, { expiresIn: '1hr' });
-
     return res.json({
       token,
       user,

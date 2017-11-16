@@ -13,10 +13,6 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
   $locationProvider.html5Mode(true);
 
   $stateProvider
-    // .state('home', {
-    //   url: '/',
-    //   templateUrl: 'js/views/statics/home.html'
-    // })
     .state('register', {
       url: '/register',
       templateUrl: 'js/views/authentications/register.html',
@@ -27,20 +23,25 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       templateUrl: 'js/views/authentications/login.html',
       controller: 'loginCtrl as vm'
     })
-    .state('usersShow', {
-      url: '/users/:id',
-      templateUrl: 'js/views/users/show.html',
-      controller: 'userShowCtrl as vm'
-    })
-    .state('usersEdit', {
-      url: '/users/:id',
-      templateUrl: 'js/views/users/edit.html',
-      controller: 'userEditCtrl as vm'
+    .state('oauth', {
+      url: '/oauth/facebook',
+      templateUrl: 'js/views/authentications/login.html',
+      controller: 'loginCtrl as vm'
     })
     .state('usersIndex', {
       url: '/users',
       templateUrl: 'js/views/users/index.html',
       controller: 'usersIndexCtrl as vm'
+    })
+    .state('usersShow', {
+      url: '/users/:id',
+      templateUrl: '/js/views/users/show.html',
+      controller: 'usersShowCtrl as vm'
+    })
+    .state('usersEdit', {
+      url: '/users/:id',
+      templateUrl: 'js/views/users/edit.html',
+      controller: 'userEditCtrl as vm'
     })
     .state('filesIndex', {
       url: '/',
@@ -54,6 +55,16 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('filesShow', {
       url: '/files/:id',
+      templateUrl: 'js/views/files/show.html',
+      controller: 'filesShowCtrl as vm'
+    })
+    .state('filesEdit', {
+      url: '/files/:id/edit',
+      templateUrl: 'js/views/files/form.html',
+      controller: 'filesEditCtrl as vm'
+    })
+    .state('like', {
+      url: '/files/:id/likes',
       templateUrl: 'js/views/files/show.html',
       controller: 'filesShowCtrl as vm'
     })

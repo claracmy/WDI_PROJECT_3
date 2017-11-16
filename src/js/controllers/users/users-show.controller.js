@@ -1,10 +1,38 @@
 angular
   .module('whatsOn')
-  .controller('userShowCtrl', userShowCtrl);
+  .controller('usersShowCtrl', usersShowCtrl);
 
-userShowCtrl.$inject = ['User', '$stateParams'];
-function userShowCtrl(User, $stateParams) {
+usersShowCtrl.$inject = [
+  'User',
+  'File',
+  '$stateParams'
+];
+function usersShowCtrl(
+  User,
+  File,
+  $stateParams
+) {
   const vm = this;
 
-  vm.user = User.get({ id: $stateParams.id });
+  console.log(vm);
+  User
+    .getCreatedFiles({ id: $stateParams.id })
+    .$promise
+    .then((files) => {
+      vm.files = files;
+    });
+
+  User
+    .get({ id: $stateParams.id })
+    .$promise
+    .then( user => {
+      vm.user = user;
+    });
+
+  vm.play = url => {
+    const audio = new Audio(url);
+    audio.play();
+    vm.isPlaying = true;
+  };
+
 }

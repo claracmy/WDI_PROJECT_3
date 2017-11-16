@@ -12,7 +12,6 @@ function mainCtrl(
   $rootScope,
   currentUserService) {
   const vm = this;
-
   vm.logout = logout;
 
   $rootScope.$on('loggedIn', () => {
@@ -21,11 +20,10 @@ function mainCtrl(
 
   $rootScope.$on('loggedOut', () => {
     vm.user = null;
-    $state.go('login');
+    $state.go('filesIndex');
   });
 
   function logout() {
     currentUserService.removeUser();
   }
-
 }
