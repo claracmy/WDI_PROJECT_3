@@ -1,12 +1,13 @@
 <!-- <img ng-src="{{ vm.user.image }}" alt="profile.user.username">
 <h2>{{ profile.user.username }}</h2>
 <a href="mailto:{{ profile.user.email }}" ng-if="profile.user.email">{{ profile.user.email }}</a>
-<p>Facebook Id: <strong>{{ profile.user.facebookId }}</strong></p> -->
+<p>Facebook Id: <strong>{{ profile.user.facebookId }}</strong></p>
 
-<!-- <button ng-click="profile.logout()">Logout</button> -->
+<button ng-click="profile.logout()">Logout</button> -->
 
 <div class="index container-fluid">
   <h1>Your profile</h1>
+  <a class="nav-link" ui-sref="usersEdit({ id: main.user.id })">Edit your profile</a>
   <div class="row">
     <div class="index-left col-6">
       <img src="http://www.stateofdigital.com/wp-content/uploads/2016/12/blue-robot-vector-art.png">

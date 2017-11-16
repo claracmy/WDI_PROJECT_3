@@ -1,5 +1,4 @@
 const File = require('../models/file');
-// const User = require('../models/user');
 const Watson = require('../lib/watson');
 
 function filesIndex (req, res, next){
