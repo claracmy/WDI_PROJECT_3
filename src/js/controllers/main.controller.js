@@ -20,7 +20,7 @@ function mainCtrl(
 
   $rootScope.$on('loggedOut', () => {
     vm.user = null;
-    $state.go('login');
+    $state.go('filesIndex');
   });
 
   function logout() {

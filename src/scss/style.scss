@@ -32,7 +32,15 @@ h3 {
 .fa {
   color: $color-secondary;
   font-size: $h2-font-size;
+  &:hover {
+    cursor:pointer;
+  }
 }
+
+a:hover {
+  text-decoration: none;
+}
+
 
 //Layout
 
@@ -46,8 +54,7 @@ h3 {
 
 .index-right {
   float: left;
-  padding: 50px 50px;
-  border: 1px solid black;
+  padding: 20px 50px;
 }
 
 .index-left {
@@ -57,4 +64,15 @@ h3 {
   }
 }
 
+
 // Jokes
+
+.index-jokes {
+  background-color: rgba(255,255,255,0.2);
+  padding: 30px 0;
+}
+
+#scrollArea {
+  height: 850px;
+  overflow: auto;
+}
