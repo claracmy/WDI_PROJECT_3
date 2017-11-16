@@ -1,16 +1,11 @@
-angular
-  .module('whatsOn')
-  .config(Authentication);
+angular.module('whatsOn').config(Authentication);
 
-Authentication.$inject = [
-  '$authProvider'
-];
-function Authentication(
-  $authProvider) {
+Authentication.$inject = ['$authProvider'];
+function Authentication($authProvider) {
   $authProvider.signupUrl = '/api/register';
-  $authProvider.loginUrl  = '/api/login';
+  $authProvider.loginUrl = '/api/login';
   $authProvider.facebook({
     url: '/api/oauth/facebook',
-    clientId: '190918681472266'
+    clientId: '133012187404801'
   });
 }

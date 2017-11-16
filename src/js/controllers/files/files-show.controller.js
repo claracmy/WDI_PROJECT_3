@@ -1,6 +1,4 @@
-angular
-  .module('whatsOn')
-  .controller('filesShowCtrl', filesShowCtrl);
+angular.module('whatsOn').controller('filesShowCtrl', filesShowCtrl);
 
 filesShowCtrl.$inject = ['File', '$stateParams', '$state'];
 
@@ -11,62 +9,45 @@ function filesShowCtrl(File, $stateParams, $state) {
   vm.editTitle = editTitle;
   vm.showEditForm = showEditForm;
 
-  File
-    .get({ id: $stateParams.id })
-    .$promise
-    .then((file) => {
-      vm.file = file;
-    });
+  File.get({ id: $stateParams.id }).$promise.then(file => {
+    vm.file = file;
+  });
 
   vm.delete = file => {
-    File
-      .remove({ id: file._id })
-      .$promise
-      .then(() => {
-        $state.go('filesIndex');
-      });
+    File.remove({ id: file._id }).$promise.then(() => {
+      $state.go('filesIndex');
+    });
   };
 
   vm.like = function() {
     vm.file.likes = {};
-    File
-      .addLike({ id: vm.file._id }, vm.file.likes)
-      .$promise
-      .then(() => {
-        getFile();
-      });
+    File.addLike({ id: vm.file._id }, vm.file.likes).$promise.then(() => {
+      getFile();
+    });
   };
 
-
   vm.submitComment = function() {
-    File
-      .addComment({ id: vm.file._id }, vm.comment)
-      .$promise
-      .then(() => {
-        vm.comment = {};
-        vm.file = File.get({ id: $stateParams.id });
-      });
+    File.addComment({ id: vm.file._id }, vm.comment).$promise.then(() => {
+      vm.comment = {};
+      vm.file = File.get({ id: $stateParams.id });
+    });
   };
 
   vm.deleteComment = function(comment) {
-    File
-      .deleteComment({id: vm.file._id, commentId: comment._id})
-      .$promise
-      .then(() => {
-        getFile();
-      });
+    File.deleteComment({
+      id: vm.file._id,
+      commentId: comment._id
+    }).$promise.then(() => {
+      getFile();
+    });
   };
 
   function getFile() {
-    File
-      .get({ id: $stateParams.id })
-      .$promise
-      .then(data => {
-        console.log(data);
-        vm.comment = {};
-        vm.file.comments = data.comments;
-        vm.file.likes = data.likes;
-      });
+    File.get({ id: $stateParams.id }).$promise.then(data => {
+      vm.comment = {};
+      vm.file.comments = data.comments;
+      vm.file.likes = data.likes;
+    });
   }
 
   function showEditForm() {
@@ -74,12 +55,9 @@ function filesShowCtrl(File, $stateParams, $state) {
   }
 
   function editTitle() {
-    File
-      .update({ id: $stateParams.id }, vm.file)
-      .$promise
-      .then(() => {
-        vm.file = File.get({ id: $stateParams.id });
-        vm.boolean = !vm.boolean;
-      });
+    File.update({ id: $stateParams.id }, vm.file).$promise.then(() => {
+      vm.file = File.get({ id: $stateParams.id });
+      vm.boolean = !vm.boolean;
+    });
   }
 }

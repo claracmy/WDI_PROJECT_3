@@ -1,0 +1,35 @@
+@import "../scss/variables/typo";
+@import "../scss/variables/font-size";
+@import "../scss/variables/color";
+
+.profile-button {
+  background-color: #007849;
+  color: white;
+  margin: 20px;
+}
+
+#add-button {
+  background-color: $color-accent;
+  border-radius: 5px;
+  &:hover {
+    color: white;
+    cursor: pointer;
+  }
+}
+
+.btn {
+  min-width: 200px;
+  margin: 0 10px;
+  &:hover {
+    cursor:pointer;
+  }
+}
+
+.btn-facebook {
+  background-color: $color-facebook;
+  border: 1px solid $color-facebook;
+  &:hover {
+    background-color: darken($color-facebook, 10%);
+    border: 1px solid darken($color-facebook, 10%);
+  }
+}

@@ -1,33 +1,32 @@
-angular
-  .module('whatsOn')
-  .controller('filesIndexCtrl', filesIndexCtrl);
+angular.module('whatsOn').controller('filesIndexCtrl', filesIndexCtrl);
 
-filesIndexCtrl.$inject = ['File','$anchorScroll'];
+filesIndexCtrl.$inject = ['File', '$anchorScroll'];
 
 function filesIndexCtrl(File, $anchorScroll) {
   const vm = this;
 
-  File
-    .query()
-    .$promise
-    .then(files => {
-      vm.files = files;
+  File.query().$promise.then(files => {
+    vm.files = files;
+  });
+
+  const audio = new Audio();
+
+  vm.play = function($event, file) {
+    vm.files.forEach(file => {
+      file.isPlaying = false;
     });
 
+    file.isPlaying = true;
+    $event.currentTarget.isPlaying = !$event.currentTarget.isPlaying;
 
-
-  vm.play = url => {
-    const audio = new Audio(url);
-    audio.play();
-    vm.isPlaying = true;
-  };
-
-  vm.pause = url => {
-    const audio = new Audio(url);
-    audio.pause();
-    vm.isPlaying = false;
+    if ($event.currentTarget.isPlaying) {
+      audio.src = file.audio;
+      audio.play();
+    } else {
+      file.isPlaying = false;
+      audio.pause();
+    }
   };
 
   $anchorScroll();
-
 }
