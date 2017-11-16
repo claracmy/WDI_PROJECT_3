@@ -33,12 +33,6 @@ app.use('/api', expressJWT({ secret: secret })
 );
 
 app.use(jwtErrorHandler);
-// 
-// function jwtErrorHandler(err, req, res, next){
-//   if (err.name !== 'UnauthorizedError') return next();
-//   return res.status(401).json({ message: 'You must be logged in to view this content' });
-// }
-
 app.use(customResponses);
 app.use('/api', router);
 

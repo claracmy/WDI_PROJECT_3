@@ -14,16 +14,23 @@ function filesIndexCtrl(File, $anchorScroll) {
       vm.files = files;
     });
 
-  vm.play = function(e, url) {
-    const audio = new Audio(url);
-    audio.play();
-    e.currentTarget.isPlaying = true;
-  };
+  const audio = new Audio();
 
-  vm.pause = function(e, url) {
-    const audio = new Audio(url);
-    audio.pause();
-    e.currentTarget.isPlaying = false;
+  vm.play = function($event, file) {
+    vm.files.forEach(file => {
+      file.isPlaying = false;
+    });
+
+    file.isPlaying = true;
+    $event.currentTarget.isPlaying = !$event.currentTarget.isPlaying;
+
+    if ($event.currentTarget.isPlaying) {
+      audio.src = file.audio;
+      audio.play();
+    } else {
+      file.isPlaying = false;
+      audio.pause();
+    }
   };
 
   $anchorScroll();
