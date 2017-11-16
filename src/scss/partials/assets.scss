@@ -1,0 +1,17 @@
+@import "../scss/variables/typo";
+@import "../scss/variables/font-size";
+@import "../scss/variables/color";
+
+.profile-photo {
+  height: 30px;
+  width: 30px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.nav-link.profile-img-link {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}

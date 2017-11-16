@@ -10,6 +10,8 @@ function filesNewCtrl(File, $state, filepickerService, $scope, $http, currentUse
   vm.file = {};
   vm.submit = textFileSubmit;
 
+  if (!currentUserService.currentUser) $state.go('filesIndex');
+
   vm.pickFile = () => {
     filepickerService.pick(
       {mimetype: 'text/*'},

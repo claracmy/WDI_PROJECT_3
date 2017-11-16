@@ -2,7 +2,6 @@ angular
   .module('whatsOn')
   .config(Router);
 
-
 Router.$inject = [
   '$stateProvider',
   '$urlRouterProvider',
@@ -65,11 +64,6 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('like', {
       url: '/files/:id/likes',
-      templateUrl: 'js/views/files/show.html',
-      controller: 'filesShowCtrl as vm'
-    })
-    .state('unlike', {
-      url: '/files/:id/likes/:likeId',
       templateUrl: 'js/views/files/show.html',
       controller: 'filesShowCtrl as vm'
     })

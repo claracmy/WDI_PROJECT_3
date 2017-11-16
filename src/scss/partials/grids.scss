@@ -1,4 +1,9 @@
+@import "../scss/variables/typo";
+@import "../scss/variables/font-size";
+@import "../scss/variables/color";
+
 * {
+  box-sizing: border-box;
   text-align: center;
 }
 
@@ -50,4 +55,32 @@ p {
 #scrollArea {
   height: 850px;
   overflow: auto;
+}
+
+.my-message {
+ padding: 15px;
+ border-radius: 0;
+ margin: 0;
+}
+
+///Profile Page
+.profile-page {
+  margin-top: 100px;
+  border-radius: 5px;
+}
+
+.input-space {
+  width: 500px;
+}
+
+.text-username {
+  padding: 10px;
+}
+
+.navbar-nav {
+  padding-top: 20px;
+}
+
+.navbar-brand {
+  padding-top: 20px;
 }

@@ -1,14 +1,20 @@
-<h1>Edit Profile</h1>
-
-  <span ng-hide="editing" ng-click="editing = true">Username: {{main.user.username}} <br>
-    Email: {{ main.user.email }}
-  <br>
-  <button href="#">Edit Profile</button></span>
-  <form ng-show="editing" ng-submit="editing = false">
-    <label>Username:</label>
-    <input type="text" ng-model="main.user.username" placeholder="Name" ng-required/>
-    <label>Email:</label>
-    <input type="text" ng-model="main.user.email" placeholder="Email" ng-required/>
-    <br/>
-    <button>Save</button>
-  </form>
+<div class="container profile-page">
+  <div class="">
+    <h1 class="card-title" >Edit Profile</h1>
+    <div class="card-body">
+      <span ng-hide="editing" ng-click="editing = true">{{main.user.username}} <br>
+        {{ main.user.email }}
+        <br>
+        <button href="#" class="btn profile-button">Edit Profile</button>
+      </span>
+      <form ng-show="editing" ng-submit="editing = false">
+        <label class="text-username" class="username-profile">Username:</label><br>
+        <input class="input-space" type="text" ng-model="main.user.username" placeholder="Name" ng-required/>
+        <br><label class="text-username">Email:</label><br>
+        <input class="input-space" type="text" ng-model="main.user.email" placeholder="Email" ng-required/>
+        <br/>
+        <button class="btn profile-button">Save</button>
+      </form>
+    </div>
+  </div>
+</div>

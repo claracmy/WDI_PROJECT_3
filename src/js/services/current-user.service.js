@@ -1,4 +1,4 @@
-angular//STEP 5
+angular
   .module('whatsOn')
   .service('currentUserService', currentUserService);
 
@@ -8,7 +8,6 @@ function currentUserService($auth, User, $rootScope) {
   const self = this;
 
   self.getUser = () => {
-    //converts token into a user id from local storage.
     const decoded = $auth.getPayload();
 
     if (decoded) {
@@ -16,7 +15,6 @@ function currentUserService($auth, User, $rootScope) {
         .get({ id: decoded.userId })
         .$promise
         .then(user => {
-          //using the id from the token to find the user in the database, once returned store in service to be used in other modules.
           self.currentUser = user;
           $rootScope.$broadcast('loggedIn');
         });
