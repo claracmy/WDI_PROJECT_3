@@ -1,6 +1,7 @@
 @import "./partials/grids";
 @import "./partials/typo";
 @import "./partials/nav-bar";
+@import "variables";
 // homepage
 
 // typography
@@ -76,4 +77,35 @@ a:hover {
 #scrollArea {
   height: 850px;
   overflow: auto;
+}
+
+//register
+.login-page, .register-page {
+  background-color: lighten($color-primary,20%);
+  height: 850px;
+}
+.form-group {
+  margin: 20px 0;
+}
+#facebook{
+  color:white;
+  font-size: 16px;
+  margin-right: 5px;
+}
+
+.btn {
+  min-width: 200px;
+  margin: 0 10px;
+  &:hover {
+    cursor:pointer;
+  }
+}
+
+.btn-facebook {
+  background-color: $color-facebook;
+  border: 1px solid $color-facebook;
+  &:hover {
+    background-color: darken($color-facebook, 10%);
+    border: 1px solid darken($color-facebook, 10%);
+  }
 }
