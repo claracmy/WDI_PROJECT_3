@@ -7,17 +7,13 @@ const commentSchema = new mongoose.Schema({
   timestamps: true
 });
 
-const likeSchema = new mongoose.Schema({
-  likedBy: { type: mongoose.Schema.ObjectId, ref: 'User' }
-});
-
 const fileSchema = new mongoose.Schema({
   filename: { type: String, required: true },
   createdBy: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   html: { type: String },
   audio: { type: String },
   comments: [ commentSchema ],
-  likes: [ likeSchema ]
+  likes: [ { type: mongoose.Schema.ObjectId, ref: 'User' } ]
 }, {
   timestamps: true
 });

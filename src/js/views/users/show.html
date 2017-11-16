@@ -1,23 +1,17 @@
-<!-- <img ng-src="{{ vm.user.image }}" alt="profile.user.username">
-<h2>{{ profile.user.username }}</h2>
-<a href="mailto:{{ profile.user.email }}" ng-if="profile.user.email">{{ profile.user.email }}</a>
-<p>Facebook Id: <strong>{{ profile.user.facebookId }}</strong></p> -->
-
-<!-- <button ng-click="profile.logout()">Logout</button> -->
-
-<div class="index container-fluid">
+<div class="profile container-fluid">
   <h1>Your profile</h1>
   <div class="row">
-    <div class="index-left col-6">
-      <img src="http://www.stateofdigital.com/wp-content/uploads/2016/12/blue-robot-vector-art.png">
+    <div class="profile-left col-6">
+      <h2>Username: {{ vm.user.username }}</h2>
+      <h2>Email: {{ vm.user.email }}</h2>
+      <button class="btn btn-success" ui-sref="usersEdit({ id: vm.user.id })">Edit your profile</button>
     </div>
-    <div class="index-left col-6">
-      <div class="index-jokes">
+    <div class="profile-right col-6">
+      <div id="scrollArea" class="index-jokes">
         <h2 id="your-jokes">Your jokes</h2>
-        <div ng-repeat="file in vm.files">
-          <h3>{{ file.filename }}</h3>
-           <i ng-click="vm.play(file.audio)" ng-hide="isPlaying" class="fa fa-play-circle-o fa-fw" aria-hidden="true"></i>
-          <p><a ui-sref="filesShow({ id: file._id })">Show more</a></p>
+        <div ng-repeat="file in vm.files | orderBy:'-'">
+          <i class="fa" ng-class="{ 'fa-play-circle-o': !file.isPlaying, 'fa-pause-circle-o': file.isPlaying }" ng-click="vm.play($event, file)"></i>
+          <a ui-sref="filesShow({ id: file._id })"><h3>{{ file.filename }}</h3></a>
         </div>
       </div>
     </div>

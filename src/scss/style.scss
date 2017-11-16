@@ -85,3 +85,20 @@ a:hover {
   border-radius: 0;
   margin: 0;
 }
+
+.profile {
+  background-color: lighten($color-primary,20%);
+  h2 {
+    margin-bottom: 30px;
+  }
+}
+
+.profile-left {
+  float:left;
+  padding: 100px 0;
+}
+
+.profile-right {
+  float: left;
+  padding: 20px 50px;
+}

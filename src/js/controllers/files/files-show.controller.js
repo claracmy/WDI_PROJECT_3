@@ -11,12 +11,7 @@ function filesShowCtrl(File, $stateParams, $state) {
   vm.editTitle = editTitle;
   vm.showEditForm = showEditForm;
 
-  File
-    .get({ id: $stateParams.id })
-    .$promise
-    .then((file) => {
-      vm.file = file;
-    });
+  getFile();
 
   vm.delete = file => {
     File
@@ -37,6 +32,14 @@ function filesShowCtrl(File, $stateParams, $state) {
       });
   };
 
+  vm.unlike = function() {
+    File
+      .removeLike({ id: vm.file._id })
+      .$promise
+      .then(() => {
+        getFile();
+      });
+  };
 
   vm.submitComment = function() {
     File
@@ -62,7 +65,6 @@ function filesShowCtrl(File, $stateParams, $state) {
       .get({ id: $stateParams.id })
       .$promise
       .then(data => {
-        console.log(data);
         vm.comment = {};
         vm.file.comments = data.comments;
         vm.file.likes = data.likes;
