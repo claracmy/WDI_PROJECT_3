@@ -1,0 +1,60 @@
+@import "variables";
+@import "navbar";
+// homepage
+
+// typography
+* {
+  box-sizing: border-box;
+  text-align: center;
+  list-style: none;
+  text-decoration: none;
+}
+
+h1 {
+  font-family: $h1-font;
+  font-size: $h1-font-size;
+  padding: 10px 0 20px 0;
+  color: $color-accent;
+}
+
+h2 {
+  font-family: $h2-font;
+  font-size: $h2-font-size;
+  color: $color-secondary;
+}
+
+h3 {
+  font-family: $h3-font;
+  font-size: $h3-font-size;
+  color: $color-text;
+}
+
+.fa {
+  color: $color-secondary;
+  font-size: $h2-font-size;
+}
+
+//Layout
+
+.index {
+    background-color: lighten($color-primary,20%);
+}
+
+.row {
+  margin-top: 30px;
+}
+
+.index-right {
+  float: left;
+  padding: 50px 50px;
+  border: 1px solid black;
+}
+
+.index-left {
+  float:left;
+  img {
+    width: 1000px;
+  }
+}
+
+// Jokes

@@ -1,4 +1,5 @@
 const File = require('../models/file');
+let i;
 
 function addLike(req, res, next) {
   File
@@ -6,20 +7,17 @@ function addLike(req, res, next) {
     .exec()
     .then(file => {
       req.body.likedBy = req.user.userId;
+
       if (file.likes.length > 0) {
-        for (let i = 0; i < file.likes.length; i++ ) {
+        for (i = 0; i < file.likes.length; i++ ) {
+          console.log(i);
           if (String(file.likes[i].likedBy) === String(req.user.userId)) {
             file.likes[i].remove();
             file.save();
             return res.status(200).json({ file });
-          } else {
-            file.likes.push(req.body);
-            file.save();
-            return res.status(200).json({ file });
           }
         }
-      } else {
-        console.log('liking');
+      } else if (file.likes.length === 0 ) {
         file.likes.push(req.body);
         file.save();
         return res.status(200).json({ file });
