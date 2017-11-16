@@ -1,9 +1,20 @@
-<h1>Homepage</h1>
+<div class="index container-fluid">
+ <h1>Watson's Jokes</h1>
+ <h2>Brighten up your day with a joke read by IBM's A.I. robot</h2>
+ <div class="row">
+   <div class="index-left col-6">
+     <img src="http://www.stateofdigital.com/wp-content/uploads/2016/12/blue-robot-vector-art.png">
+   </div>
 
-<ul>
-  <li ng-repeat="file in vm.files track by $index">
-    <h2>{{ file.filename }}</h2>
-    <audio controls><source ng-src="{{ file.audio }}" type="audio/wav"></audio>
-    <p><a ui-sref="filesShow({ id: file._id })">Show more</a></p>
-  </li>
-</ul>
+   <div class="index-right col-6">
+     <div id="scrollArea" class="index-jokes">
+       <div ng-repeat="file in vm.files track by $index">
+           <i ng-click="vm.play(file.audio)" ng-hide="isPlaying" class="fa fa-play-circle-o fa-fw" aria-hidden="true"></i>
+           <i ng-click="vm.pause(file.audio)" ng-show="isPlaying" class="fa fa-pause-circle-o fa-fw" aria-hidden="true"></i>
+           <h3>{{ file.filename }}</h3>
+         <p><a ui-sref="filesShow({ id: file._id })">Show more</a></p>
+       </div>
+     </div>
+   </div>
+ </div>
+</div>

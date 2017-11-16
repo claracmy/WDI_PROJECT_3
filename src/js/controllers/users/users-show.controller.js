@@ -14,12 +14,12 @@ function usersShowCtrl(
 ) {
   const vm = this;
   // vm.deleteFile = deleteFile;
-  console.log($stateParams);
+  console.log(vm);
   User
     .getCreatedFiles({ id: $stateParams.id })
     .$promise
     .then((files) => {
-      console.log('files passed to vm.files', files);
+    // console.log('files passed to vm.files', files);
       vm.files = files;
     });
   User
@@ -27,8 +27,14 @@ function usersShowCtrl(
     .$promise
     .then( user => {
       vm.user = user;
-      console.log('user', user);
+    // console.log('user', user);
     });
+
+  vm.play = url => {
+    const audio = new Audio(url);
+    audio.play();
+    vm.isPlaying = true;
+  };
 
 
   // function deleteFile(file) {
