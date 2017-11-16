@@ -25,6 +25,7 @@ app.use(express.static(`${__dirname}/public`));
 app.use('/api', expressJWT({ secret: secret })
   .unless({
     path: [
+      { url: '/api/files', methods: ['GET'] },
       { url: '/api/login', methods: ['POST'] },
       { url: '/api/register', methods: ['POST'] }
     ]
@@ -32,6 +33,12 @@ app.use('/api', expressJWT({ secret: secret })
 );
 
 app.use(jwtErrorHandler);
+// 
+// function jwtErrorHandler(err, req, res, next){
+//   if (err.name !== 'UnauthorizedError') return next();
+//   return res.status(401).json({ message: 'You must be logged in to view this content' });
+// }
+
 app.use(customResponses);
 app.use('/api', router);
 

@@ -14,16 +14,16 @@ function filesIndexCtrl(File, $anchorScroll) {
       vm.files = files;
     });
 
-  vm.play = url => {
+  vm.play = function(e, url) {
     const audio = new Audio(url);
     audio.play();
-    vm.isPlaying = true;
+    e.currentTarget.isPlaying = true;
   };
 
-  vm.pause = url => {
+  vm.pause = function(e, url) {
     const audio = new Audio(url);
     audio.pause();
-    vm.isPlaying = false;
+    e.currentTarget.isPlaying = false;
   };
 
   $anchorScroll();
