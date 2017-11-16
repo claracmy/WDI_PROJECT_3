@@ -77,4 +77,6 @@ function validatePassword(password){
   return bcrypt.compareSync(password, this.passwordHash);
 }
 
+
+
 module.exports = mongoose.model('User', userSchema);

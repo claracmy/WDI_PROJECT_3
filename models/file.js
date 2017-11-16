@@ -13,7 +13,7 @@ const likeSchema = new mongoose.Schema({
 
 const fileSchema = new mongoose.Schema({
   filename: { type: String, required: true },
-  createdBy: { type: mongoose.Schema.ObjectId, ref: 'User' },
+  createdBy: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   html: { type: String },
   audio: { type: String },
   comments: [ commentSchema ],

@@ -3,6 +3,7 @@ mongoose.Promise = require('bluebird');
 const Watson = require('../lib/watson');
 
 const { db, env } = require('../config/environment');
+
 mongoose.connect(db[env], { useMongoClient: true });
 
 const User = require('../models/user');

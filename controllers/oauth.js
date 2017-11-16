@@ -29,7 +29,6 @@ function facebook(req, res, next) {
       });
     })
     .then((profile) => {
-      console.log(profile);
       req.profile = profile;
       return User.findOne({ $or: [{ email: profile.email }, { facebookId: profile.id }] });
     })
@@ -42,7 +41,6 @@ function facebook(req, res, next) {
       }
       user.facebookId = req.profile.id;
       user.image = req.profile.picture && req.profile.picture.data && req.profile.picture.data.url;
-      console.log(user);
       return user.save();
     })
     .then(user => {
