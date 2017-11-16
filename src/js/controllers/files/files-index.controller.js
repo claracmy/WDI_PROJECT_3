@@ -6,13 +6,15 @@ filesIndexCtrl.$inject = ['File','$anchorScroll'];
 
 function filesIndexCtrl(File, $anchorScroll) {
   const vm = this;
-console.log('this is vm', vm);
+
   File
     .query()
     .$promise
     .then(files => {
       vm.files = files;
     });
+
+
 
   vm.play = url => {
     const audio = new Audio(url);
