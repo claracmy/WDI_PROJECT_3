@@ -32,7 +32,6 @@ app.use('/api', expressJWT({ secret: secret })
 );
 
 app.use(jwtErrorHandler);
-
 app.use(customResponses);
 app.use('/api', router);
 

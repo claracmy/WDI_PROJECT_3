@@ -14,8 +14,6 @@ function filesIndexCtrl(File, $anchorScroll) {
       vm.files = files;
     });
 
-
-
   vm.play = url => {
     const audio = new Audio(url);
     audio.play();

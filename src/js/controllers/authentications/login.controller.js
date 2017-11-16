@@ -5,12 +5,13 @@ angular
 loginCtrl.$inject = [
   '$state',
   '$auth',
-  'currentUserService'
+  'currentUserService',
+  '$rootScope'
 ];
 function loginCtrl(
   $state,
   $auth,
-  currentUserService) {
+  currentUserService, $rootScope) {
 
   const vm = this;
 
@@ -30,8 +31,20 @@ function loginCtrl(
     $auth
       .login(vm.user)
       .then(res => {
-        currentUserService.getUser();
-        $state.go('usersShow', { id: res.data.user.id });
+        if (res.status === 200) {
+          currentUserService.getUser();
+          $state.go('filesIndex');
+          $rootScope.$broadcast('displayMessage', {
+            type: 'success',
+            content: `Welcome back ${res.data.user.username}`
+          });
+        }
+      })
+      .catch(() => {
+        $rootScope.$broadcast('displayMessage', {
+          type: 'warning',
+          content: 'Incorrect Credentials.'
+        });
       });
   }
 }
