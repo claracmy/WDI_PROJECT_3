@@ -24,9 +24,15 @@
         <div id="scrollArea" class="index-jokes">
           <h2>Your jokes</h2>
           <div class="row">
-            <div class="joke-show col-6" ng-repeat="file in vm.files | orderBy:'-'">
-              <i class="fa" ng-class="{ 'fa-play-circle-o': !file.isPlaying, 'fa-pause-circle-o': file.isPlaying }" ng-click="vm.play($event, file)"></i>
-              <a class="joke-title" ui-sref="filesShow({ id: file._id })"><h3>{{ file.filename }}</h3></a>
+            <div class="joke-show col-12" ng-repeat="file in vm.files | orderBy:'-'">
+              <div class="row">
+                <div class="col-lg-8">
+                  <a class="joke-title" ui-sref="filesShow({ id: file._id })"><h3>{{ file.filename }}</h3></a>
+                </div>
+                <div class="col-lg-4">
+                  <i class="fa" ng-class="{ 'fa-play-circle-o': !file.isPlaying, 'fa-pause-circle-o': file.isPlaying }" ng-click="vm.play($event, file)"></i>
+                </div>
+              </div>
             </div>
           </div>
         </div>
