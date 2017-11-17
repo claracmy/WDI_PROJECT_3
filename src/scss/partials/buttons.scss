@@ -1,18 +1,69 @@
-@import "../scss/variables/typo";
-@import "../scss/variables/font-size";
-@import "../scss/variables/color";
+@import "./variables/typo";
+@import "./variables/font-size";
+@import "./variables/color";
 
 .profile-button {
-  background-color: #007849;
+  background-color: $color-accent;
   color: white;
   margin: 20px;
 }
 
 #add-button {
-  background-color: $color-accent;
+  background-color: orange;
+  font-weight: bold;
+  min-width: 120px;
   border-radius: 5px;
   &:hover {
     color: white;
+    background-color: lighten(orange,10%);
     cursor: pointer;
   }
+}
+
+.btn {
+  min-width: 180px;
+  margin: 0 10px;
+  &:hover {
+    cursor:pointer;
+  }
+}
+
+.btn-facebook {
+  background-color: $color-facebook;
+  border: 1px solid $color-facebook;
+  &:hover {
+    background-color: darken($color-facebook, 10%);
+    border: 1px solid darken($color-facebook, 10%);
+  }
+}
+
+.like-buttons {
+  .btn-like{
+    float: left;
+    min-width: 100px;
+    font-size: $p-font-size;
+    background-color: $color-facebook;
+    color: white;
+  }
+  .fa {
+    font-size: $p-font-size;
+    margin-right: 5px;
+    color: white;
+      }
+      a {
+        color: white;
+        text-decoration: none;
+      }
+}
+  h3 {
+    float: left;
+    display:inline;
+  }
+
+.edit-buttons {
+  float: right;
+}
+
+.fb-share-button {
+  min-width: 180px;
 }

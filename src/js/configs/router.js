@@ -1,12 +1,6 @@
-angular
-  .module('whatsOn')
-  .config(Router);
+angular.module('whatsOn').config(Router);
 
-Router.$inject = [
-  '$stateProvider',
-  '$urlRouterProvider',
-  '$locationProvider'
-];
+Router.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 
 function Router($stateProvider, $urlRouterProvider, $locationProvider) {
   $locationProvider.html5Mode(true);
@@ -56,11 +50,6 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/files/:id',
       templateUrl: 'js/views/files/show.html',
       controller: 'filesShowCtrl as vm'
-    })
-    .state('filesEdit', {
-      url: '/files/:id/edit',
-      templateUrl: 'js/views/files/form.html',
-      controller: 'filesEditCtrl as vm'
     })
     .state('like', {
       url: '/files/:id/likes',

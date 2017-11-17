@@ -1,18 +1,13 @@
-angular
-  .module('whatsOn')
-  .controller('filesIndexCtrl', filesIndexCtrl);
+angular.module('whatsOn').controller('filesIndexCtrl', filesIndexCtrl);
 
-filesIndexCtrl.$inject = ['File','$anchorScroll'];
+filesIndexCtrl.$inject = ['File', '$anchorScroll'];
 
 function filesIndexCtrl(File, $anchorScroll) {
   const vm = this;
 
-  File
-    .query()
-    .$promise
-    .then(files => {
-      vm.files = files;
-    });
+  File.query().$promise.then(files => {
+    vm.files = files;
+  });
 
   const audio = new Audio();
 
@@ -34,5 +29,4 @@ function filesIndexCtrl(File, $anchorScroll) {
   };
 
   $anchorScroll();
-
 }

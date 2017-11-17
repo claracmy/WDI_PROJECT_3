@@ -1,8 +1,6 @@
-angular
-  .module('whatsOn')
-  .service('currentUserService', currentUserService);
+angular.module('whatsOn').service('currentUserService', currentUserService);
 
-currentUserService.$inject = [ '$auth', 'User', '$rootScope'];
+currentUserService.$inject = ['$auth', 'User', '$rootScope'];
 
 function currentUserService($auth, User, $rootScope) {
   const self = this;
@@ -11,13 +9,10 @@ function currentUserService($auth, User, $rootScope) {
     const decoded = $auth.getPayload();
 
     if (decoded) {
-      User
-        .get({ id: decoded.userId })
-        .$promise
-        .then(user => {
-          self.currentUser = user;
-          $rootScope.$broadcast('loggedIn');
-        });
+      User.get({ id: decoded.userId }).$promise.then(user => {
+        self.currentUser = user;
+        $rootScope.$broadcast('loggedIn');
+      });
     }
   };
 

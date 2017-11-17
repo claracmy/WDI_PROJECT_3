@@ -1,20 +1,10 @@
-angular
-  .module('whatsOn')
-  .controller('usersShowCtrl', usersShowCtrl);
+angular.module('whatsOn').controller('usersShowCtrl', usersShowCtrl);
 
-usersShowCtrl.$inject = [
-  'User',
-  'File',
-  '$stateParams'
-];
-function usersShowCtrl(
-  User,
-  File,
-  $stateParams
-) {
+usersShowCtrl.$inject = ['User', 'File', '$stateParams'];
+function usersShowCtrl(User, File, $stateParams) {
   const vm = this;
+  vm.editProfile = editProfile;
 
-  console.log(vm);
   User
     .getCreatedFiles({ id: $stateParams.id })
     .$promise
@@ -29,10 +19,33 @@ function usersShowCtrl(
       vm.user = user;
     });
 
-  vm.play = url => {
-    const audio = new Audio(url);
-    audio.play();
-    vm.isPlaying = true;
-  };
+  function editProfile() {
+    console.log(vm.user.id);
+    console.log(vm.user);
+    User
+      .update({ id: vm.user.id }, vm.user)
+      .$promise
+      .then(() => {
+        vm.user = User.get({ id: vm.user.id });
+      });
+  }
 
+  const audio = new Audio();
+
+  vm.play = function($event, file) {
+    vm.files.forEach(file => {
+      file.isPlaying = false;
+    });
+
+    file.isPlaying = true;
+    $event.currentTarget.isPlaying = !$event.currentTarget.isPlaying;
+
+    if ($event.currentTarget.isPlaying) {
+      audio.src = file.audio;
+      audio.play();
+    } else {
+      file.isPlaying = false;
+      audio.pause();
+    }
+  };
 }

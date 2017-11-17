@@ -1,19 +1,35 @@
-<div class="index container-fluid">
+<div class="profile container-fluid">
   <h1>Your profile</h1>
-  <a class="nav-link" ui-sref="usersEdit({ id: main.user.id })">Edit your profile</a>
-  <div class="row">
-    <div class="index-left col-6">
-      <img src="http://www.stateofdigital.com/wp-content/uploads/2016/12/blue-robot-vector-art.png">
-    </div>
-    <div class="index-left col-6">
-      <div class="index-jokes">
-        <h2 id="your-jokes">Your jokes</h2>
-        <div ng-repeat="file in vm.files">
-          <h3>{{ file.filename }}</h3>
-           <i ng-click="vm.play(file.audio)" ng-hide="isPlaying" class="fa fa-play-circle-o fa-fw" aria-hidden="true"></i>
-          <p><a ui-sref="filesShow({ id: file._id })">Show more</a></p>
+    <div class="row">
+      <div class="profile-left col-6">
+        <form class="col-6 mx-auto" ng-show="editing" ng-submit="editing = false; vm.editProfile()">
+          <div class="form-group">
+            <label for="username"><h3>Username</h3></label>
+            <input type="text" name="username" ng-model="vm.user.username" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="email"><h3>Email</h3></label>
+            <input type="text" name="email" ng-model="vm.user.email" class="form-control">
+          </div>
+          <button class="btn btn-success">Save</button>
+        </form>
+        <div ng-hide="editing">
+          <h2>Username: {{ vm.user.username }}</h2>
+          <h2>Email: {{ vm.user.email }}</h2>
+          <button ng-click="editing = true" class="btn btn-success">Edit your profile</button>
+        </div>
+      </div>
+
+      <div class="profile-right col-6">
+        <div id="scrollArea" class="index-jokes">
+          <h2>Your jokes</h2>
+          <div class="row">
+            <div class="joke-show col-6" ng-repeat="file in vm.files | orderBy:'-'">
+              <i class="fa" ng-class="{ 'fa-play-circle-o': !file.isPlaying, 'fa-pause-circle-o': file.isPlaying }" ng-click="vm.play($event, file)"></i>
+              <a class="joke-title" ui-sref="filesShow({ id: file._id })"><h3>{{ file.filename }}</h3></a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 </div>

@@ -1,0 +1,13 @@
+@import "./variables/typo";
+@import "./variables/font-size";
+@import "./variables/color";
+
+.login-page, .register-page {
+  height: 850px;
+}
+
+#facebook{
+  color:white;
+  font-size: 16px;
+  margin-right: 5px;
+}

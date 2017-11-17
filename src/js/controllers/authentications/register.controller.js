@@ -2,7 +2,13 @@ angular
   .module('whatsOn')
   .controller('registerCtrl', registerCtrl);
 
-registerCtrl.$inject = ['$state', '$auth', 'currentUserService', '$scope', '$rootScope'];
+registerCtrl.$inject = [
+  '$state',
+  '$auth',
+  'currentUserService',
+  '$scope',
+  '$rootScope'
+];
 
 function registerCtrl($state, $auth, currentUserService, $scope, $rootScope) {
   const vm = this;

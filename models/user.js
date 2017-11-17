@@ -1,5 +1,5 @@
-const mongoose  = require('mongoose');
-const bcrypt    = require('bcrypt');
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 const validator = require('validator');
 
 const userSchema = new mongoose.Schema({
@@ -10,21 +10,13 @@ const userSchema = new mongoose.Schema({
   image: { type: String, trim: true }
 });
 
-userSchema
-  .virtual('password')
-  .set(setPassword);
+userSchema.virtual('password').set(setPassword);
 
-userSchema
-  .virtual('passwordConfirmation')
-  .set(setPasswordConfirmation);
+userSchema.virtual('passwordConfirmation').set(setPasswordConfirmation);
 
-userSchema
-  .path('passwordHash')
-  .validate(validatePasswordHash);
+userSchema.path('passwordHash').validate(validatePasswordHash);
 
-userSchema
-  .path('email')
-  .validate(validateEmail);
+userSchema.path('email').validate(validateEmail);
 
 userSchema.methods.validatePassword = validatePassword;
 
@@ -42,8 +34,8 @@ userSchema.set('toJSON', {
   }
 });
 
-function setPassword(value){
-  this._password    = value;
+function setPassword(value) {
+  this._password = value;
   this.passwordHash = bcrypt.hashSync(value, bcrypt.genSaltSync(8));
 }
 
@@ -73,10 +65,8 @@ function validateEmail(email) {
   }
 }
 
-function validatePassword(password){
+function validatePassword(password) {
   return bcrypt.compareSync(password, this.passwordHash);
 }
-
-
 
 module.exports = mongoose.model('User', userSchema);

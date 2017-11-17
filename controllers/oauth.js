@@ -4,7 +4,6 @@ const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const { secret } = require('../config/environment');
 
-
 function facebook(req, res, next) {
   return rp({
     method: 'POST',
@@ -17,7 +16,7 @@ function facebook(req, res, next) {
     },
     json: true
   })
-    .then((token) => {
+    .then(token => {
       return rp({
         method: 'GET',
         url: `${oauth.facebook.profileURL}${oauth.facebook.fields.join(',')}`,
@@ -28,19 +27,24 @@ function facebook(req, res, next) {
         }
       });
     })
-    .then((profile) => {
+    .then(profile => {
       req.profile = profile;
-      return User.findOne({ $or: [{ email: profile.email }, { facebookId: profile.id }] });
+      return User.findOne({
+        $or: [{ email: profile.email }, { facebookId: profile.id }]
+      });
     })
     .then(user => {
-      if(!user) {
+      if (!user) {
         user = new User({
           username: req.profile.first_name,
           email: req.profile.email
         });
       }
       user.facebookId = req.profile.id;
-      user.image = req.profile.picture && req.profile.picture.data && req.profile.picture.data.url;
+      user.image =
+        req.profile.picture &&
+        req.profile.picture.data &&
+        req.profile.picture.data.url;
       return user.save();
     })
     .then(user => {

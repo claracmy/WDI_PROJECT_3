@@ -12,6 +12,15 @@
   <!-- endinject -->
 </head>
 <body class="mainFrame" ng-controller="mainCtrl as main">
+  <!-- Facebook Sharing -->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.11&appId=190918681472266';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
 
   <nav class="navbar navbar-expand-lg navbar-light">
     <a class="navbar-brand" ui-sref="filesIndex">Watson</a>
@@ -47,9 +56,10 @@
       </ul>
     </div>
   </nav>
-  <div ng-show="main.message" class="my-message alert alert-{{ main.messageType }}" role="alert">
-        {{ main.message }}
-      </div>
+    <div ng-show="main.message" class="my-message alert alert-{{ main.messageType }}" role="alert">
+      {{ main.message }}
+    </div>
   <main ui-view></main>
 </body>
+
 </html>
