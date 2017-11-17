@@ -8,6 +8,7 @@ loginCtrl.$inject = [
   'currentUserService',
   '$rootScope'
 ];
+
 function loginCtrl(
   $state,
   $auth,

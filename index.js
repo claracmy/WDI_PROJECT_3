@@ -28,7 +28,8 @@ app.use(
     path: [
       { url: '/api/files', methods: ['GET'] },
       { url: '/api/login', methods: ['POST'] },
-      { url: '/api/register', methods: ['POST'] }
+      { url: '/api/register', methods: ['POST'] },
+      { url: '/api/oauth/facebook', methods: ['POST'] }
     ]
   })
 );
