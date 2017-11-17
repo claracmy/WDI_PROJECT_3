@@ -25,24 +25,3 @@ audio {
   width: 100%;
   margin-bottom: 20px;
 }
-
-.like-buttons {
-  .btn-like{
-    float: left;
-    min-width: 100px;
-    font-size: $p-font-size;
-    color: $color-facebook;
-    .fa {
-      font-size: $p-font-size;
-      color: $color-facebook;
-    }
-  }
-  h3 {
-    float: left;
-    display:inline;
-  }
-}
-
-.edit-buttons {
-  float: right;
-}

@@ -45,6 +45,7 @@ p {
   color: $color-secondary;
   &:hover {
     cursor: pointer;
+    color: lighten($color-secondary, 10%);
   }
 }
 

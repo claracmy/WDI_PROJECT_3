@@ -11,6 +11,7 @@
     <h3>Likes {{ vm.file.likes.length}}</h3>
     <button ng-click="vm.like()" class="btn btn-like"><i class="fa fa-thumbs-up" aria-hidden="true"></i>Like</button>
     <button ng-click="vm.unlike()" class="btn btn-like"><i class="fa fa-thumbs-down" aria-hidden="true"></i>Unlike</button>
+    <button class="btn btn-like fb-xfbml-parse-ignore" data-href="https://watson-clara.herokuapp.com/" data-layout="button" data-size="large" data-mobile-iframe="true"><i class="fa fa-facebook-square" aria-hidden="true"></i><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwatson-clara.herokuapp.com%2F&amp;src=sdkpreparse">Share</a></button>
   </div>
   <div class="col-6">
     <button class="btn btn-info btn-sm" ng-if="main.user.id === vm.file.createdBy" ng-click="vm.showEditForm()">
@@ -23,7 +24,8 @@
     <h2>Comments</h2>
     <ul ng-repeat="comment in vm.file.comments track by $index">
       <h4>{{ comment.content }}</h4>
-      <p>Created by {{ comment.createdBy.username }} <button class="btn btn-danger btn-sm" ng-click="vm.deleteComment(comment)" ng-if="comment.createdBy.id === main.user.id">Delete Comment</button></p>
+      <p>Created by {{ comment.createdBy.username }}</p>
+      <button class="btn btn-danger btn-sm" ng-click="vm.deleteComment(comment)" ng-if="comment.createdBy.id === main.user.id">Delete Comment</button>
     </ul>
 
     <form class="form" ng-submit="vm.submitComment()">
