@@ -3,13 +3,14 @@
 @import "./variables/color";
 
 .profile-button {
-  background-color: #007849;
+  background-color: $color-accent;
   color: white;
   margin: 20px;
 }
 
 #add-button {
-  background-color: $color-accent;
+  background-color: lighten($color-accent, 10%);
+  min-width: 120px;
   border-radius: 5px;
   &:hover {
     color: white;
@@ -18,7 +19,7 @@
 }
 
 .btn {
-  min-width: 200px;
+  min-width: 180px;
   margin: 0 10px;
   &:hover {
     cursor:pointer;

@@ -12,16 +12,19 @@ function filesShowCtrl(File, $stateParams, $state) {
   getFile();
 
   vm.delete = file => {
-    File.remove({ id: file._id }).$promise.then(() => {
-      $state.go('filesIndex');
-    });
+    File.remove({ id: file._id })
+      .$promise.then(() => {
+        $state.go('filesIndex');
+      });
   };
 
   vm.like = function() {
     vm.file.likes = {};
-    File.addLike({ id: vm.file._id }, vm.file.likes).$promise.then(() => {
-      getFile();
-    });
+    File.addLike({ id: vm.file._id }, vm.file.likes)
+      .$promise
+      .then(() => {
+        getFile();
+      });
   };
 
   vm.unlike = function() {
@@ -34,19 +37,22 @@ function filesShowCtrl(File, $stateParams, $state) {
   };
 
   vm.submitComment = function() {
-    File.addComment({ id: vm.file._id }, vm.comment).$promise.then(() => {
-      vm.comment = {};
-      vm.file = File.get({ id: $stateParams.id });
-    });
+    File.addComment({ id: vm.file._id }, vm.comment)
+      .$promise
+      .then(() => {
+        vm.comment = {};
+        vm.file = File.get({ id: $stateParams.id });
+      });
   };
 
   vm.deleteComment = function(comment) {
     File.deleteComment({
       id: vm.file._id,
       commentId: comment._id
-    }).$promise.then(() => {
-      getFile();
-    });
+    }).$promise
+      .then(() => {
+        getFile();
+      });
   };
 
   function getFile() {

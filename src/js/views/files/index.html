@@ -8,10 +8,12 @@
 
    <div class="index-right col-6">
      <div id="scrollArea" class="index-jokes">
-       <div ng-repeat="file in vm.files | orderBy:'-'">
-          <i class="fa" ng-class="{ 'fa-play-circle-o': !file.isPlaying, 'fa-pause-circle-o': file.isPlaying }" ng-click="vm.play($event, file)"></i>
-           <a ui-sref="filesShow({ id: file._id })"><h3>{{ file.filename }}</h3></a>
+       <div class="joke-index row" ng-repeat="file in vm.files | orderBy:'-'">
+          <i class="fa offset-1 col-3" ng-class="{ 'fa-play-circle-o': !file.isPlaying, 'fa-pause-circle-o': file.isPlaying }" ng-click="vm.play($event, file)"></i>
+          <div class="col-6">
+           <a class="joke-title" ui-sref="filesShow({ id: file._id })"><h3>{{ file.filename }}</h3></a>
            <p>Likes: {{ file.likes.length }}</p>
+           </div>
        </div>
      </div>
    </div>

@@ -1,0 +1,35 @@
+@import "./variables/typo";
+@import "./variables/font-size";
+@import "./variables/color";
+
+.index-jokes {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 30px 0;
+}
+
+#scrollArea {
+  height: 850px;
+  overflow: auto;
+}
+
+.index-right {
+  float: left;
+  padding: 20px 50px;
+}
+
+.index-left {
+  float:left;
+  img {
+    width: 1000px;
+  }
+}
+
+.joke-index {
+  padding: 20px 0 10px 0px;
+  i, a, h3 {
+    display: inline;
+  }
+  i {
+    font-size: 48px;
+  }
+}

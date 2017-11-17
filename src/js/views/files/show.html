@@ -1,37 +1,36 @@
-<h1>Show page</h1>
+<div class="container">
+<h1 ng-show="vm.boolean">{{ vm.file.filename }}</h1>
+<form class="form col-6 mx-auto" ng-submit="vm.editTitle()" ng-hide="vm.boolean">
+  <input class="form-control" name="name" ng-model="vm.file.filename" placeholder="{{ vm.file.filename }}"></input>
+  <button class="btn btn-success btn-sm" ng-click="vm.showEditForm()" style="display:none">Edit Title</button>
+</form>
 
-  <h2 ng-show="vm.boolean">
-    Joke title: {{ vm.file.filename }}
-  </h2>
-
-  <form ng-submit="vm.editTitle()" ng-hide="vm.boolean">
-    <textarea name="name" rows="3" ng-model="vm.file.filename" cols="10">Put your new joke title</textarea>
-    <button name="button">Submit new title</button>
-  </form>
-
-  <div ng-if="main.user.id === vm.file.createdBy" ng-click="vm.showEditForm()">
-    Edit title
+<audio controls ng-src="{{ vm.file.audio }}"></audio>
+<div class="show-row row">
+  <div class="col-6 like-buttons">
+    <h3>Likes {{ vm.file.likes.length}}</h3>
+    <button ng-click="vm.like()" class="btn btn-like"><i class="fa fa-thumbs-up" aria-hidden="true"></i>Like</button>
+    <button ng-click="vm.unlike()" class="btn btn-like"><i class="fa fa-thumbs-down" aria-hidden="true"></i>Unlike</button>
   </div>
+  <div class="col-6">
+    <button class="btn btn-info btn-sm" ng-if="main.user.id === vm.file.createdBy" ng-click="vm.showEditForm()">
+      Edit Title
+    </button>
+    <button class="btn btn-danger btn-sm" ng-click="vm.delete(vm.file)" ng-if="main.user.id === vm.file.createdBy">Delete</button>
+  </div>
+</div>
+  <div class="col-9 mx-auto" id="comments-container">
+    <h2>Comments</h2>
+    <ul ng-repeat="comment in vm.file.comments track by $index">
+      <h4>{{ comment.content }}</h4>
+      <p>Created by {{ comment.createdBy.username }} <button class="btn btn-danger btn-sm" ng-click="vm.deleteComment(comment)" ng-if="comment.createdBy.id === main.user.id">Delete Comment</button></p>
+    </ul>
 
-  <audio controls ng-src="{{ vm.file.audio }}"></audio>
-  <p><a ui-sref="filesIndex">Back to index</a></p>
-
-  <button ng-click="vm.delete(vm.file)" ng-if="main.user.id === vm.file.createdBy">Delete</button>
-
-    <form ng-submit="vm.submitComment()">
-      <h3>Leave your comment</h3>
-      <label for="comments">Comment</label>
-      <input type="text" name="comments" ng-model="vm.comment.content"/>
-      <input type="submit" id="submit" value="Submit" />
+    <form class="form" ng-submit="vm.submitComment()">
+      <textarea class="form-control" ng-model="vm.comment.content">Leave a comment</textarea>
+      <button class="btn btn-success">Submit Comment</button>
     </form>
 
-    <h1>Comments</h1>
-
-    <ul ng-repeat="comment in vm.file.comments track by $index">
-      <p>{{ comment.content }}</p>
-      <p>Created by {{ comment.createdBy.username }}</p>
-      <button ng-click="vm.deleteComment(comment)" ng-if="comment.createdBy.id === main.user.id">Delete</button>
-    </ul>
-   <p>Likes: {{ vm.file.likes.length}}</p>
-  <button ng-click="vm.like()">Like</button>
-  <button ng-click="vm.unlike()">Unlike</button>
+    <button class="btn btn-block" ui-sref="filesIndex">Back to index</button>
+  </div>
+</div>

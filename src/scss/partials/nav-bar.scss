@@ -1,10 +1,19 @@
-@import "../scss/variables/typo";
-@import "../scss/variables/font-size";
-@import "../scss/variables/color";
+@import "./variables/typo";
+@import "./variables/font-size";
+@import "./variables/color";
 
 nav {
  background-color: lighten($color-primary,20%);
  a {
    color: $color-text;
  }
+}
+
+.navbar-nav {
+  padding-top: 20px;
+}
+
+.navbar-brand {
+  font-size: $h2-font-size;
+  padding-top: 20px;
 }

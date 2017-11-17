@@ -1,0 +1,16 @@
+@import "./variables/typo";
+@import "./variables/font-size";
+@import "./variables/color";
+
+.form-group {
+  margin: 20px 0;
+}
+
+textarea {
+  height: 150px;
+  outline: none;
+  resize: none;
+  padding: 10px;
+  margin-bottom: 20px;
+  text-align: left;
+}
