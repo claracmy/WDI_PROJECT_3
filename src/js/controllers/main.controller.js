@@ -20,7 +20,6 @@ function mainCtrl($state, $rootScope, currentUserService, $timeout) {
   });
 
   $rootScope.$on('error', (e, err) => {
-    console.log('errormessage');
     if(err.status === 401) {
       $state.go('login');
       $rootScope.$broadcast('displayMessage', {
