@@ -28,7 +28,7 @@ function facebook(req, res, next) {
       });
     })
     .then(profile => {
-      req.profile = profile;
+      req._profile = profile;
       return User.findOne({
         $or: [{ email: profile.email }, { facebookId: profile.id }]
       });

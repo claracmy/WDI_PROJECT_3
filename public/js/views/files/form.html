@@ -1,0 +1,14 @@
+<h1>Add a Joke</h1>
+<form class="form col-9 mx-auto" ng-submit="vm.submit()">
+  <label class="form-group" for="filename"><h3>Joke Title</h3></label>
+  <input class="form-control" type="text" ng-model="vm.file.filename">
+  <label class="form-group"><h3>Joke Content</h3></label>
+  <textarea class="form-control" ng-model="vm.file.html"></textarea>
+  <button class="btn btn-success">Send To Watson</button>
+</form>
+
+<!-- FOR FUTURE REFERENCE -->
+
+<!-- <h2>Convert file</h2>
+<div class="btn btn-success" ng-click="vm.pickFile()">Upload file & convert it</div>
+<div data-fp-url="vm.file.content" style="width:90%; height:500px"></div> -->

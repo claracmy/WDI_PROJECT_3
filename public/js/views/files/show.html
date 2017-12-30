@@ -1,0 +1,38 @@
+<div class="container">
+<h1 ng-show="vm.boolean">{{ vm.file.filename }}</h1>
+<form class="form col-6 mx-auto" ng-submit="vm.editTitle()" ng-hide="vm.boolean">
+  <input class="form-control" name="name" ng-model="vm.file.filename" placeholder="{{ vm.file.filename }}">
+  <button class="btn btn-success btn-sm" ng-click="vm.showEditForm()" style="display:none">Edit Title</button>
+</form>
+
+<audio controls ng-src="{{ vm.file.audio }}"></audio>
+<div class="show-row row">
+  <div class="col-6 like-buttons">
+    <h3>Likes {{ vm.file.likes.length}}</h3>
+    <button ng-click="vm.like()" class="btn btn-like"><i class="fa fa-thumbs-up" aria-hidden="true"></i>Like</button>
+    <button ng-click="vm.unlike()" class="btn btn-like"><i class="fa fa-thumbs-down" aria-hidden="true"></i>Unlike</button>
+    <button class="btn btn-like fb-xfbml-parse-ignore" data-href="https://watson-clara.herokuapp.com/" data-layout="button" data-size="large" data-mobile-iframe="true"><i class="fa fa-facebook-square" aria-hidden="true"></i><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwatson-clara.herokuapp.com%2F&amp;src=sdkpreparse">Share</a></button>
+  </div>
+  <div class="col-6">
+    <button class="btn btn-info btn-sm" ng-if="main.user.id === vm.file.createdBy" ng-click="vm.showEditForm()">
+      Edit Title
+    </button>
+    <button class="btn btn-danger btn-sm" ng-click="vm.delete(vm.file)" ng-if="main.user.id === vm.file.createdBy">Delete</button>
+  </div>
+</div>
+  <div class="col-9 mx-auto" id="comments-container">
+    <h2>Comments</h2>
+    <ul ng-repeat="comment in vm.file.comments track by $index">
+      <h4>{{ comment.content }}</h4>
+      <p>Created by {{ comment.createdBy.username }}</p>
+      <button class="btn btn-danger btn-sm" ng-click="vm.deleteComment(comment)" ng-if="comment.createdBy.id === main.user.id">Delete Comment</button>
+    </ul>
+
+    <form class="form" ng-submit="vm.submitComment()">
+      <textarea class="form-control" ng-model="vm.comment.content">Leave a comment</textarea>
+      <button class="btn btn-success">Submit Comment</button>
+    </form>
+
+    <button class="btn btn-block" ui-sref="filesIndex">Back to index</button>
+  </div>
+</div>

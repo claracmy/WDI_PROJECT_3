@@ -1,0 +1,21 @@
+<div class="index container-fluid">
+ <h1>Watson's Jokes</h1>
+ <h2>Brighten up your day with a joke read by IBM's A.I. robot</h2>
+ <div class="row">
+   <div class="index-left col-6">
+     <img src="http://www.stateofdigital.com/wp-content/uploads/2016/12/blue-robot-vector-art.png">
+   </div>
+
+   <div class="index-right col-6">
+     <div id="scrollArea" class="index-jokes">
+       <div class="joke-index row" ng-repeat="file in vm.files | orderBy:'-'">
+          <i class="fa offset-1 col-3" ng-class="{ 'fa-play-circle-o': !file.isPlaying, 'fa-pause-circle-o': file.isPlaying }" ng-click="vm.play($event, file)"></i>
+          <div class="col-6">
+           <a class="joke-title" ui-sref="filesShow({ id: file._id })"><h3>{{ file.filename }}</h3></a>
+           <p>Likes: {{ file.likes.length }}</p>
+           </div>
+       </div>
+     </div>
+   </div>
+ </div>
+</div>
