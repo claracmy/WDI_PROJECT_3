@@ -5,15 +5,17 @@
   "main": "index.js",
   "scripts": {
     "precommit": "lint-staged",
-    "postinstall":
-      "bower install && gulp deploy &&  ./node_modules/bower/bin/bower install",
+    "postinstall": "bower install && gulp deploy",
     "test": "istanbul cover node_modules/.bin/_mocha"
   },
   "engines": {
     "node": "8.4.0"
   },
   "lint-staged": {
-    "**/*.{js,json,css}": ["prettier-eslint --single-quote --write", "git add"]
+    "**/*.{js,json,css}": [
+      "prettier-eslint --single-quote --write",
+      "git add"
+    ]
   },
   "author": "Students",
   "license": "ISC",
@@ -59,6 +61,8 @@
     }
   },
   "dependencies": {
+    "@angular/cli": "^1.6.3",
+    "@angular/compiler-cli": "^5.1.2",
     "atob": "^2.0.3",
     "aws-sdk": "^2.149.0",
     "bcrypt": "^1.0.3",
