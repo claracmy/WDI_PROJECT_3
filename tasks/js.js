@@ -37,15 +37,15 @@ const buildJs = () => {
     fetchVendorJs(),
     fetchLocalJs()
   )
-  .pipe(order([config.vendor.js, config.selectors.js]))
-  .pipe(gulpIf(global.production, replace('http://localhost:4000', process.env.API_URL)))
-  .pipe(concat(config.output.js))
-  .pipe(sourcemaps.init())
-  .pipe(gulpIf(global.production, uglify()))
-  .pipe(gulpIf(global.production, rename({ suffix: '.min' })))
-  .pipe(sourcemaps.write())
-  .pipe(gulp.dest(config.dest.js))
-  .pipe(gulpIf(!global.production, browserSync.stream()));
+    .pipe(order([config.vendor.js, config.selectors.js]))
+    .pipe(gulpIf(global.production, replace('http://localhost:4000', process.env.API_URL)))
+    .pipe(concat(config.output.js))
+    .pipe(sourcemaps.init())
+    .pipe(gulpIf(global.production, uglify()))
+    .pipe(gulpIf(global.production, rename({ suffix: '.min' })))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(config.dest.js))
+    .pipe(gulpIf(!global.production, browserSync.stream()));
 };
 
 gulp.task('build-js', buildJs);
