@@ -16,9 +16,9 @@ The original idea of the app was to utilise the IBM Watson API to convert text m
 The core of the app is the translation of text into speech. The process begins when the user sends text via a POST request to the server. The server then makes an API call to IBM Watson, receiving an Audio buffer back, which is then intercepted and uploaded onto our AWS Bucket (also setting the format to wav). The audio URL on AWS can now be retrived and embedded on our front-end.   
 There were async issues requiring custom promises and the Watson API was slightly difficult to work with (wav header needs to be repaired using its built in algorithm).
 
-Below is a diagram describing the process.
+Below is a diagram describing the process.  
 ![Diagram](https://imgur.com/0O4w0gv.png)
-And when filestack is supported.
+And when filestack is supported.  
 ![Diagram2](https://imgur.com/hlM7nlI.png)
 
 ## Timeline 
@@ -45,11 +45,11 @@ Day 7 : Styling, error message display, Facebook sharing
 - Lack of coordination of tasks
 - GitHub conflicts sometimes causing code to be edited incorrectly
 
-Homepage
+Homepage  
 ![Homepage](https://imgur.com/NzDcssS.png)
-Show page
+Show page  
 ![Showpage](https://imgur.com/42FVtds.png)
-Profile page
+Profile page  
 ![profile](https://imgur.com/T6qv5MS.png)
 
 ## Recommendations for future work
