@@ -1,3 +1,3 @@
 angular
   .module('whatsOn')
-  .constant('API', 'http://localhost:4000/api');
+  .constant('API', 'https://watson-clara.herokuapp.com/api');
