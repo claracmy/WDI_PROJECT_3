@@ -13,7 +13,8 @@
 The original idea of the app was to utilise the IBM Watson API to convert text materials to speech. However, upon realising the characters limit imposed, we decided to pivot into a jokes app. The users are able to upload text files or text input and receive an embedded audio version of it on the platform. Users are able to comment, like or unlike jokes. Users can log in via Facebook or share the app on Facebook.
 
 ## Tech
-The core of the app is the translation of text into speech. The process begins when the user sends text via a POST request to the server. The server then makes an API call to IBM Watson, receiving an Audio buffer back, which is then intercepted and uploaded onto our AWS Bucket (also setting the format to wav). The audio URL on AWS can now be retrived and embedded on our front-end. There were async issues requiring custom promises and the Watson API was slightly difficult to work with (wav header needs to be repaired using its built in algorithm).
+The core of the app is the translation of text into speech. The process begins when the user sends text via a POST request to the server. The server then makes an API call to IBM Watson, receiving an Audio buffer back, which is then intercepted and uploaded onto our AWS Bucket (also setting the format to wav). The audio URL on AWS can now be retrived and embedded on our front-end. 
+There were async issues requiring custom promises and the Watson API was slightly difficult to work with (wav header needs to be repaired using its built in algorithm).
 
 Below is a diagram describing the process.
 ![Diagram](https://imgur.com/0O4w0gv.png)
