@@ -58,9 +58,12 @@ Profile page
 - Adding sentient to Watson voice
 - Test Driven Development
 
+## Demo
+[DEMO HERE](https://watson-clara.herokuapp.com/)
+
 ## Contributors Github
-[Harry Robertson](https://github.com/harryr89)
-[Masee Hussain](https://github.com/Ma5ee2)
-[Ismail Alami](https://github.com/ialami)
+[Harry Robertson](https://github.com/harryr89)  
+[Masee Hussain](https://github.com/Ma5ee2)  
+[Ismail Alami](https://github.com/ialami)  
 ![Group](https://imgur.com/swO3G2w.png)
 ![Group2](https://imgur.com/OxbOAF7.png)
