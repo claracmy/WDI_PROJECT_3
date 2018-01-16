@@ -17,9 +17,9 @@ The core of the app is the translation of text into speech. The process begins w
 There were async issues requiring custom promises and the Watson API was slightly difficult to work with (wav header needs to be repaired using its built in algorithm).
 
 Below is a diagram describing the process.  
-![Diagram](https://imgur.com/0O4w0gv.png)
+![Diagram](https://imgur.com/0O4w0gv.png)  
 And when filestack is supported.  
-![Diagram2](https://imgur.com/hlM7nlI.png)
+![Diagram2](https://imgur.com/hlM7nlI.png)  
 
 ## Timeline 
 Day 1 : Authentication and tests
@@ -46,11 +46,11 @@ Day 7 : Styling, error message display, Facebook sharing
 - GitHub conflicts sometimes causing code to be edited incorrectly
 
 Homepage  
-![Homepage](https://imgur.com/NzDcssS.png)
+![Homepage](https://imgur.com/NzDcssS.png)  
 Show page  
-![Showpage](https://imgur.com/42FVtds.png)
+![Showpage](https://imgur.com/42FVtds.png)  
 Profile page  
-![profile](https://imgur.com/T6qv5MS.png)
+![profile](https://imgur.com/T6qv5MS.png)  
 
 ## Recommendations for future work
 - Spend more time on planning and design, with a clear definition of MVP
