@@ -19,7 +19,7 @@ There were async issues requiring custom promises and the Watson API was slightl
 Below is a diagram describing the process.  
 ![Diagram](https://imgur.com/0O4w0gv.png)  
 And when filestack is supported.  
-![Diagram2](https://imgur.com/hlM7nlI.png)  
+![Diagram2](https://imgur.com/lS2BNHx.png)  
 
 ## Timeline 
 Day 1 : Authentication and tests
